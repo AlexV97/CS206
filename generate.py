@@ -11,10 +11,10 @@ class Create_World():
     pyrosim.End()
 class Create_Robot():
     pyrosim.Start_URDF("body.urdf")
-    pyrosim.Send_Cube(name="Torso", pos=[0,0,0.5] , size=[w,l,h])
-    pyrosim.Send_Joint(name = "Torso_Leg" , parent= "Torso" , child = "Leg" ,
+    pyrosim.Send_Cube(name="Link0", pos=[0,0,0.5] , size=[w,l,h])
+    pyrosim.Send_Joint(name = "Link0_Link1" , parent= "Torso" , child = "Leg" ,
     type = "revolute", position = [0.5,0,1.0])
-    pyrosim.Send_Cube(name="Leg", pos=[0,0,0.5] , size=[w,l,h])
+    pyrosim.Send_Cube(name="Link1", pos=[0,0,0.5] , size=[w,l,h])
     pyrosim.End()
     
 Create_World()
