@@ -4,6 +4,7 @@ import time
 import pyrosim.pyrosim as pyrosim
 import numpy
 import math
+import random
 
 from pathlib import Path
 
@@ -19,10 +20,11 @@ Path.cwd()
 
 pyrosim.Prepare_To_Simulate(robotId)
 
-backLegSensorValues=numpy.zeros(100)
-frontLegSensorValues=numpy.zeros(100)
+backLegSensorValues=numpy.zeros(1600)
+frontLegSensorValues=numpy.zeros(1600)
 
-for i in range(100):
+for i in range(1600):
+    positionRange=(random.random()*random.random()*math.pi)/2.0
     p.stepSimulation();
     backLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
     frontLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
@@ -30,15 +32,15 @@ for i in range(100):
     bodyIndex = robotId,  #robot,
     jointName = "Torso_BackLeg",
     controlMode = p.POSITION_CONTROL,
-    targetPosition = -math.pi/4.0,
-    maxForce = 500)
+    targetPosition = -(positionRange),
+    maxForce = 80)
     pyrosim.Set_Motor_For_Joint(
     bodyIndex = robotId,  #robot,
     jointName = "Torso_FrontLeg",
     controlMode = p.POSITION_CONTROL,
-    targetPosition = math.pi/4.0,
-    maxForce = 500)
-    time.sleep(120/60);
+    targetPosition = (positionRange),
+    maxForce = 80)
+    time.sleep(1/480);
 
 print("final backLegSensorValues=")
 print(backLegSensorValues)
