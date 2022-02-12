@@ -3,6 +3,7 @@ import pybullet_data
 import time
 import pyrosim.pyrosim as pyrosim
 import numpy
+import math
 
 from pathlib import Path
 
@@ -29,9 +30,15 @@ for i in range(100):
     bodyIndex = robotId,  #robot,
     jointName = "Torso_BackLeg",
     controlMode = p.POSITION_CONTROL,
-    targetPosition = 0.0,
+    targetPosition = -math.pi/4.0,
     maxForce = 500)
-    time.sleep(1/60);
+    pyrosim.Set_Motor_For_Joint(
+    bodyIndex = robotId,  #robot,
+    jointName = "Torso_FrontLeg",
+    controlMode = p.POSITION_CONTROL,
+    targetPosition = math.pi/4.0,
+    maxForce = 500)
+    time.sleep(120/60);
 
 print("final backLegSensorValues=")
 print(backLegSensorValues)
