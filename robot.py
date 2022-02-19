@@ -1,4 +1,9 @@
 class ROBOT:
     def _init_(self):
-        pass
+        self.sensors {
+        
+        }
+        self.motors {
+        
+        }
 
