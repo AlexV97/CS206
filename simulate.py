@@ -61,5 +61,6 @@ print("simulate.py: after simulation.Run()")
 #print(frontLegSensorValues)
 #
 #
-#p.disconnect
+def __del__(self):
+    p.disconnect()
 #
