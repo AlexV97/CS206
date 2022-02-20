@@ -13,12 +13,9 @@ class SIMULATION:
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
         self.planeId = p.loadURDF("plane.urdf")
-        #self.robotId = p.loadURDF("body.urdf")
-        #p.loadSDF("world.sdf")
         self.world = WORLD()
         self.robot = ROBOT()
     def Run(self):
-        print("simulation Run() - just before for loop ")
         for i in range(c.indexRange):
            #targetAngles_BackLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_BackLeg*math.pi/(c.indexRange))+c.phaseOffset_BackLeg))
            #targetAngles_FrontLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_FrontLeg*math.pi/(c.indexRange))+c.phaseOffset_FrontLeg))
