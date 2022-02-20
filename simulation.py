@@ -15,11 +15,15 @@ class SIMULATION:
         self.planeId = p.loadURDF("plane.urdf")
         self.world = WORLD()
         self.robot = ROBOT()
+        
+        
     def Run(self):
         for i in range(c.indexRange):
            #targetAngles_BackLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_BackLeg*math.pi/(c.indexRange))+c.phaseOffset_BackLeg))
            #targetAngles_FrontLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_FrontLeg*math.pi/(c.indexRange))+c.phaseOffset_FrontLeg))
-           p.stepSimulation();
+           p.stepSimulation()
+           self.robot.Sense()
+
            #backLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
            #frontLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
            #pyrosim.Set_Motor_For_Joint(
