@@ -14,7 +14,7 @@ class SIMULATION:
         p.setGravity(0,0,-9.8)
         self.planeId = p.loadURDF("plane.urdf")
         #self.robotId = p.loadURDF("body.urdf")
-        p.loadSDF("world.sdf")
+        #p.loadSDF("world.sdf")
         self.world = WORLD()
         self.robot = ROBOT()
     def Run(self):
