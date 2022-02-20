@@ -1,9 +1,12 @@
+import pybullet as p
+
 class ROBOT:
-    def _init_(self):
-        self.sensors {
+    def __init__(self):
+        self.robotId = p.loadURDF("body.urdf")
+        self.sensors = {
         
         }
-        self.motors {
+        self.motors = {
         
         }
 
