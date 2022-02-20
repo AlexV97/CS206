@@ -12,7 +12,9 @@ import random
 from pathlib import Path
 
 simulation = SIMULATION()
-print("simulate: after simulation = SIMULATION()")
+simulation.Run()
+
+print("simulate.py: after simulation.Run()")
 #physicsClient = p.connect(p.GUI)
 #p.setAdditionalSearchPath(pybullet_data.getDataPath())
 #p.setGravity(0,0,-9.8)
