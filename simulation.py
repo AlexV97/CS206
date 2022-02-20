@@ -13,18 +13,25 @@ class SIMULATION:
         p.loadSDF("world.sdf")
         self.world = WORLD()
         self.robot = ROBOT()
-        
-    #def _init_(self, physicsclient, pybullet_data, setgravity):
-        #self.world = WORLD()
-        #self.robot = ROBOT()
-        ##self.physicsClient = p.connect(p.GUI)
-        ##self.physicsClient = p.connect(physicsclient)
-        #self.physicsClient = p.connect(p.GUI)
-        ##p.setAdditionalSearchPath(pybullet_data.getDataPath())
-        #self.setAdditionalSearchPath = setAdditionalSearchPath(pybullet_data.getDataPath())
-        ##self.p.setGravity(0,0,-9.8)
-        ##self.setGravity = setGravity(setgravity)
-        #self.setGravity = setGravity(0,0,-9.8)
-        ##pyrosim.Prepare_To_Simulate(robotId)
-        #self.pyrosim.Prepare_To_Simulate(robotId)
-
+    def Run():
+        for i in range(c.indexRange):
+            targetAngles_BackLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_BackLeg*math.pi/(c.indexRange))+c.phaseOffset_BackLeg))
+            targetAngles_FrontLeg[i]=numpy.sin(math.pi/4)*numpy.sin(((i*2*c.frequency_FrontLeg*math.pi/(c.indexRange))+c.phaseOffset_FrontLeg))
+            p.stepSimulation();
+            backLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
+            frontLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+            pyrosim.Set_Motor_For_Joint(
+                bodyIndex = robotId,  #robot,
+                jointName = "Torso_BackLeg",
+                controlMode = p.POSITION_CONTROL,
+                targetPosition = c.amplitude_BackLeg * targetAngles_BackLeg[i],
+                maxForce = 80
+            )
+            pyrosim.Set_Motor_For_Joint(
+                bodyIndex = robotId,  #robot,
+                jointName = "Torso_FrontLeg",
+                controlMode = p.POSITION_CONTROL,
+                targetPosition = c.amplitude_FrontLeg * targetAngles_FrontLeg[i],
+                maxForce = 80
+            )
+            time.sleep(1/480);
