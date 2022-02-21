@@ -20,7 +20,7 @@ class SIMULATION:
     def Run(self):
         for i in range(c.indexRange):
            p.stepSimulation()
-           self.robot.Sense()
+           self.robot.Sense(i)
            time.sleep(1/480);
 
             
