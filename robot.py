@@ -20,23 +20,20 @@ class ROBOT:
         self.sensors = {
         }
         for linkName in pyrosim.linkNamesToIndices:
-            #print("ROBOT - Prepare_To_Sense for loop - linkName =", linkName) # called only 3x with BackLeg, Torso, FrontLeg
             self.sensors[linkName] = SENSOR(linkName) # printing infinitely coordinates of BackLeg
-        
-        #print("Dictionary self.sensors = ")
-        #for x,y in self.sensors.items():
-        #    print(x,y)
 
     def Sense(self,i):
-        #backLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-        #frontLegSensorValues[i]=pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
         for sensor in self.sensors.values():
-            #sensor.Get_Value(i)
-            #print("ROBOT Sense for sensor = ", sensor, " - i=", i)
-            #self.values[i] = sensor.Get_Value(i)
             sensor.Get_Value(i)
             
+    def Prepare_To_Act(self):
+        self.targetangles = {
+        }
+        for jointName in pyrosim.jointNamesToIndices:
+            self.sensors[jointName] = SENSOR(jointName)
             
+
+      
         
         
     
