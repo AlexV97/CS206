@@ -5,4 +5,4 @@ phaseOffset_BackLeg  = 0
 amplitude_FrontLeg  = (math.pi)/4
 frequency_FrontLeg = 10
 phaseOffset_FrontLeg = (math.pi)/4
-indexRange=1000
+indexRange=500  # =1000
