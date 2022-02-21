@@ -34,7 +34,7 @@ class ROBOT:
             
     def Act(self):
         for motor in self.motors.values():
-            motor.Set_Value(i)
+            motor.Set_Value(i, self.robot)
             
 
       
