@@ -42,14 +42,12 @@ print("simulate.py: after simulation.Run()")
 #    bodyIndex = robotId,  #robot,
 #    jointName = "Torso_BackLeg",
 #    controlMode = p.POSITION_CONTROL,
-#
 #    targetPosition = c.amplitude_BackLeg * targetAngles_BackLeg[i],
 #    maxForce = 80)
 #    pyrosim.Set_Motor_For_Joint(
 #    bodyIndex = robotId,  #robot,
 #    jointName = "Torso_FrontLeg",
 #    controlMode = p.POSITION_CONTROL,
-#
 #    targetPosition = c.amplitude_FrontLeg * targetAngles_FrontLeg[i],
 #    maxForce = 80)
 #    time.sleep(1/480);
