@@ -24,7 +24,7 @@ class SIMULATION:
            self.robot.Act(i)
            time.sleep(1/480);
         
-        #self.robot.Save_Values_Sensors()
+        self.robot.Save_Values_Sensors()
             
     def __del__(self):
         p.disconnect()

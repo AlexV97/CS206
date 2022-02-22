@@ -16,9 +16,11 @@ class SENSOR:
         #file_name += ".npy"
         #print('SENSOR Save_Values to file: ', file_name)
         #with open('../data/targetAngles_BackLegValues.npy','wb') as outputSensorValues_file:
-        with open(file_name,'wb') as outputSensorValues_file:
-            numpy.save(outputSensorValues_file, self.values)
-        outputSensorValues_file.close()
+        numpy.save("data/"+str(self.linkName)+"sensor.npy", self.values)
+        #with open(file_name,'wb') as outputSensorValues_file:
+        #    numpy.save(outputSensorValues_file, self.values)
+        #outputSensorValues_file.close()
         
-        
+    def __del__(self):
+        self.Save_Values()
     
