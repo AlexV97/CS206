@@ -8,7 +8,4 @@ class SENSOR:
         self.values = numpy.zeros(c.indexRange)
 
     def Get_Value(self,i):
-        self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)  # instruction 65 refers of our index i as t for current time
-        #if i==(c.indexRange-1):
-        #    print("i=",i," - sensor ", self.linkName, "- values = ", self.values)
-        
+        self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)  

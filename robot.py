@@ -18,15 +18,13 @@ class ROBOT:
         phaseOffset = c.phaseOffset
         for motor in pyrosim.jointNamesToIndices:
             self.motors[motor] = MOTOR(motor)
-            #motor.Prepare_To_Act(amplitude, frequency, phaseOffset) # motor.Prepare_To_Act(amplitude, frequency, phaseOffset) AttributeError: 'str' object has no attribute 'Prepare_To_Act'
-            #self.motors[motor].Prepare_To_Act(amplitude, frequency, phaseOffset) # motor.Set_Value(i, self.robot) AttributeError: 'str' object has no attribute 'Set_Value'
-
+ 
         
     def Prepare_To_Sense(self):
         self.sensors = {
         }
         for linkName in pyrosim.linkNamesToIndices:
-            self.sensors[linkName] = SENSOR(linkName) # printing infinitely coordinates of BackLeg
+            self.sensors[linkName] = SENSOR(linkName)
 
     def Sense(self,i):
         for sensor in self.sensors.values():
@@ -34,8 +32,6 @@ class ROBOT:
 
     def Act(self,i):
         for motor in self.motors:
-            print("robot - Act for loop ", i)
-            #motor.Set_Value(i, self.robot) # motor.Set_Value(i, self.robot AttributeError: 'str' object has no attribute 'Set_Value'
             self.motors[motor].Set_Value(i, self)
         
             
