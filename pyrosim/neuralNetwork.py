@@ -31,7 +31,8 @@ class NEURAL_NETWORK:
     def Update(self):
         for neuron in self.neurons:
             self.neurons[neuron] = NEURON(neuron)
-            print(neuron)
+            if self.neurons[neuronName].Is_Sensor_Neuron(): #step 34
+                self.neurons[neuronName].Update_Sensor_Neuron()
 # ---------------- Private methods --------------------------------------
 
     def Add_Neuron_According_To(self,line):
