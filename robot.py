@@ -41,6 +41,7 @@ class ROBOT:
             
     def Think(self):
         self.nn = NEURAL_NETWORK("brain.nndf")
+        self.nn.Update()
         self.nn.Print()
       
         

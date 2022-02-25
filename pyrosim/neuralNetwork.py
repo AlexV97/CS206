@@ -27,7 +27,9 @@ class NEURAL_NETWORK:
         self.Print_Motor_Neuron_Values()
 
         print("")
-
+    
+    def Update(self):
+        pass
 # ---------------- Private methods --------------------------------------
 
     def Add_Neuron_According_To(self,line):
