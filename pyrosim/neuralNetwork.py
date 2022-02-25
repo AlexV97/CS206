@@ -1,5 +1,5 @@
 from pyrosim.neuron  import NEURON
-
+import pyrosim.pyrosim as pyrosim
 from pyrosim.synapse import SYNAPSE
 
 class NEURAL_NETWORK: 
@@ -29,7 +29,9 @@ class NEURAL_NETWORK:
         print("")
     
     def Update(self):
-        pass
+        for neuron in self.neurons:
+            self.neurons[neuron] = NEURON(neuron)
+            print(neuron)
 # ---------------- Private methods --------------------------------------
 
     def Add_Neuron_According_To(self,line):
