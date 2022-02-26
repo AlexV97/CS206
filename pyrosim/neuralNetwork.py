@@ -33,6 +33,7 @@ class NEURAL_NETWORK:
             self.neurons[neuronName] = NEURON(neuronName)
             if self.neurons[neuronName].Is_Sensor_Neuron(): #step - 34
                 self.neurons[neuronName].Update_Sensor_Neuron()
+            else: self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron() #Step 50
 # ---------------- Private methods --------------------------------------
 
     def Add_Neuron_According_To(self,line):
