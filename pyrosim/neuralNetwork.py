@@ -29,8 +29,8 @@ class NEURAL_NETWORK:
         print("")
     
     def Update(self):
-        for neuron in self.neurons:
-            self.neurons[neuron] = NEURON(neuron)
+        for neuronName in self.neurons:
+            self.neurons[neuronName] = NEURON(neuronName)
             if self.neurons[neuronName].Is_Sensor_Neuron(): #step - 34
                 self.neurons[neuronName].Update_Sensor_Neuron()
 # ---------------- Private methods --------------------------------------
