@@ -9,6 +9,9 @@ import pyrosim.constants as c
 class NEURON: 
 
     def __init__(self,line):
+ 
+        #print("neuron constructor - c.MOTOR_NEURON=", c.MOTOR_NEURON) #c.MOTOR_NEURON= = 1
+        #print("")
 
         self.Determine_Name(line)
 
@@ -49,18 +52,18 @@ class NEURON:
         return self.type == c.HIDDEN_NEURON
 
     def Is_Motor_Neuron(self):
-
+        print("neuron - Is_Motor_Neuron(self) - type=", self.type, " - value=", self.value)
         return self.type == c.MOTOR_NEURON
 
     def Print(self):
-
-        # self.Print_Name()
-
-        # self.Print_Type()
-
+        #print("neuron Print - name:")
+        #self.Print_Name()
+        #print("neuron Print - type:")
+        #self.Print_Type()
+        print("neuron Print - value:")
         self.Print_Value()
 
-        # print("")
+        print("")
 
     def Set_Value(self,value):
 
@@ -70,7 +73,8 @@ class NEURON:
         pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name())
         
     def Update_Hidden_Or_Motor_Neuron(self):
-        pass
+        self.Set_Value(0.0)
+        #self.value = 0
 # -------------------------- Private methods -------------------------
 
     def Determine_Name(self,line):
