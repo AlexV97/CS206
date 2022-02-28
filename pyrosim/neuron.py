@@ -52,29 +52,32 @@ class NEURON:
         return self.type == c.HIDDEN_NEURON
 
     def Is_Motor_Neuron(self):
-        print("neuron - Is_Motor_Neuron(self) - type=", self.type, " - value=", self.value)
+        ##print("neuron - Is_Motor_Neuron(self) - type=", self.type, " - value=", self.value)
         return self.type == c.MOTOR_NEURON
 
     def Print(self):
-        #print("neuron Print - name:")
+        #print("neuron Print - Print_Name():")
         #self.Print_Name()
-        #print("neuron Print - type:")
+        #print("neuron Print - Print_Type():")
         #self.Print_Type()
-        print("neuron Print - value:")
+        #print("neuron Print - Print_Value():")
         self.Print_Value()
 
-        print("")
+        #print("")
 
     def Set_Value(self,value):
 
         self.value = value
 
     def Update_Sensor_Neuron(self):
-        pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name())
+        ##pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name())
+        self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
+        ##
         
     def Update_Hidden_Or_Motor_Neuron(self):
-        self.Set_Value(0.0)
-        #self.value = 0
+        #self.Set_Value(0.0)
+        self.Set_Value(math.pi/4.0)
+        
 # -------------------------- Private methods -------------------------
 
     def Determine_Name(self,line):

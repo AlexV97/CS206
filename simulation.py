@@ -11,7 +11,7 @@ import time
 
 class SIMULATION:
     def __init__(self):
-        print("simulation - constructor")
+        #print("simulation - constructor")
         self.physicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
@@ -19,15 +19,15 @@ class SIMULATION:
         self.robot = ROBOT()
         
     def Run(self):
-        print("simulation - Run()")
+        #print("simulation - Run()")
         for i in range(c.indexRange):
-           print("simulation - p.stepSimulation()")
+           #print("simulation - p.stepSimulation()")
            p.stepSimulation()
-           print("simulation - self.robot.Sense(i)")
+           #print("simulation - self.robot.Sense(i)")
            self.robot.Sense(i)
-           print("simulation - self.robot.Think()")
+           #print("simulation - self.robot.Think()")
            self.robot.Think()
-           print("simulation - self.robot.Think()")
+           #print("simulation - self.robot.Act()")
            self.robot.Act(i)
            time.sleep(1/480);
         
