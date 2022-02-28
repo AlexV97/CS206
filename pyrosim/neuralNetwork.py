@@ -1,4 +1,4 @@
-import pyrosim.pyrosim as pyrosim    ###
+import pyrosim.pyrosim as pyrosim
 from pyrosim.neuron  import NEURON
 from pyrosim.synapse import SYNAPSE
 
@@ -20,38 +20,22 @@ class NEURAL_NETWORK:
 
 
     def Print(self):
-        ##print("neuralNetwork - Print():")
-        ##print("")
-        ##print("neuralNetwork - Print() - Print_Sensor_Neuron_Values():")
-        ##print("")
         self.Print_Sensor_Neuron_Values()
-        ##print("neuralNetwork - Print() - Print_Hidden_Neuron_Values():")
-        ##print("")
         self.Print_Hidden_Neuron_Values()
-        #print("neuralNetwork - Print() - Print_Motor_Neuron_Values():")
-        #print("")
         self.Print_Motor_Neuron_Values()
-        ##
         print("")
     
     def Update(self):
         for neuronName in self.neurons:
-            ##print("neuralNetwork - Update() - Key=neuronName=", neuronName)
-            ##self.neurons[neuronName] = NEURON(neuronName)
             if self.neurons[neuronName].Is_Sensor_Neuron(): #step - 34
                 self.neurons[neuronName].Update_Sensor_Neuron()
             else: self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron() #Step 50
         
     def Get_Neuron_Names(self):
-        ##print("neuralNetwork - Get_Neuron_Names() - self=", self)
-        #self.Print_Sensor_Neuron_Values()
         neurons_keys=self.neurons.keys()
-        ##print("neuralNetwork - neurons_keys=", neurons_keys)
         return neurons_keys
         
     def Is_Motor_Neuron(self, neuronName):
-        ##print("neuralNetwork - Is_Motor_Neuron() - self", self, " - neuronName=", neuronName)
-        ##print("")
         return (self.neurons[neuronName].Is_Motor_Neuron())
 
     def Is_Sensor_Neuron(self,neuronName):
@@ -59,9 +43,6 @@ class NEURAL_NETWORK:
         
     def Is_Hidden_Neuron(self,neuronName):
         return self.neurons[neuronName].Is_Hidden_Neuron()
-     
-#    def Get_Name(self):
-#        return self.neurons[neuronName].Get_Name()
         
     def Get_Motor_Neurons_Joint(self,neuronName):
         return self.neurons[neuronName].Get_Joint_Name()
