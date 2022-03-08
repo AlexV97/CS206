@@ -29,7 +29,7 @@ class NEURAL_NETWORK:
         for neuronName in self.neurons:
             if self.neurons[neuronName].Is_Sensor_Neuron(): #step - 34
                 self.neurons[neuronName].Update_Sensor_Neuron()
-            else: self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron() #Step 50
+            else: self.neurons[neuronName].Update_Hidden_Or_Motor_Neuron(self.neurons, self.synapses) #Step 50
         
     def Get_Neuron_Names(self):
         neurons_keys=self.neurons.keys()
@@ -71,11 +71,9 @@ class NEURAL_NETWORK:
     def Digest(self,line):
 
         if self.Line_Contains_Neuron_Definition(line):
-
             self.Add_Neuron_According_To(line)
 
         if self.Line_Contains_Synapse_Definition(line):
-
             self.Add_Synapse_According_To(line)
 
     def Line_Contains_Neuron_Definition(self,line):

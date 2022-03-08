@@ -62,8 +62,10 @@ class NEURON:
         self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
         
         
-    def Update_Hidden_Or_Motor_Neuron(self):
+    def Update_Hidden_Or_Motor_Neuron(self, neurons, synapses):
         self.Set_Value(math.pi/4.0)
+        #print("Neurons: ", neurons, "Synapses: ", synapses)
+        #exit()
         
 # -------------------------- Private methods -------------------------
 
