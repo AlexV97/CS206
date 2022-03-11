@@ -72,7 +72,7 @@ class NEURON:
         self.Set_Value = 0
         synapse_keys = synapses.keys()
         print("before for loop synapse_keys=", synapse_keys, " - neurons' value=", neurons[self.Get_Name()].Get_Value() )
-        print("neuron value=", neurons[self.Get_Name()].Get_Value() )
+        print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
         for each_synapse in synapses:
             print("each_synapse=", each_synapse)
             if ( each_synapse[1] == self.Get_Name()):
@@ -83,7 +83,9 @@ class NEURON:
                 print("trying to add:",val_to_add)
                 self.Add_To_Value(val_to_add)
                 print("after self.Get_Value()=",self.Get_Value())
-        print("neuron value=", neurons[self.Get_Name()].Get_Value() )
+                
+        print("after for loop synapse_keys=", synapse_keys, " - neurons' value=", neurons[self.Get_Name()].Get_Value() )
+        print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
         exit()
     
 # -------------------------- Private methods -------------------------
