@@ -21,8 +21,10 @@ class NEURON:
         self.Set_Value(0.0)
 
     def Add_To_Value( self, value ):
-
-        self.Set_Value( self.Get_Value() + value )
+        #print("Add_To_Value() self=", self, "-self.Get_Value()=", self.Get_Value(), "+value=", value, "=",(self.Get_Value() + #value ) )
+        #self.Set_Value( (self.Get_Value() + value ) ) # self.Set_Value( (self.Get_Value() ) ) - TypeError: 'int' object is not callable
+        new_value=self.Get_Value() + value
+        self.value = new_value
 
     def Get_Joint_Name(self):
 
@@ -61,12 +63,29 @@ class NEURON:
     def Update_Sensor_Neuron(self):
         self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
         
-        
+    def Allow_Presynaptic_Neuron_To_Influence_Me(self, weight, presynaptic_value):
+        #print("Allow_Presynaptic_Neuron_To_Influence_Me() weight(", weight, ")*presynaptic_value(", presynaptic_value,")=", #weight*presynaptic_value)
+        return(weight*presynaptic_value)
+
     def Update_Hidden_Or_Motor_Neuron(self, neurons, synapses):
-        self.Set_Value(math.pi/4.0)
-        #print("Neurons: ", neurons, "Synapses: ", synapses)
-        #exit()
-        
+        #self.Set_Value(math.pi/4.0)
+        self.Set_Value = 0
+        synapse_keys = synapses.keys()
+        print("before for loop synapse_keys=", synapse_keys, " - neurons' value=", neurons[self.Get_Name()].Get_Value() )
+        print("neuron value=", neurons[self.Get_Name()].Get_Value() )
+        for each_synapse in synapses:
+            print("each_synapse=", each_synapse)
+            if ( each_synapse[1] == self.Get_Name()):
+                print("pre-synaptic neurons =",each_synapse[0], " - post-synaptic neurons =",each_synapse[1] )
+                print("initial self.Get_Value()=",self.Get_Value())
+                val_to_add = self.Allow_Presynaptic_Neuron_To_Influence_Me(synapses[each_synapse].Get_Weight(), neurons[self.Get_Name()].Get_Value())
+                val_to_add+=neurons[each_synapse[0]].Get_Value() # adding presynaptic neuron value
+                print("trying to add:",val_to_add)
+                self.Add_To_Value(val_to_add)
+                print("after self.Get_Value()=",self.Get_Value())
+        print("neuron value=", neurons[self.Get_Name()].Get_Value() )
+        exit()
+    
 # -------------------------- Private methods -------------------------
 
     def Determine_Name(self,line):

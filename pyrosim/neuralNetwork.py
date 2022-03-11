@@ -7,6 +7,7 @@ class NEURAL_NETWORK:
     def __init__(self,nndfFileName):
 
         self.neurons = {}
+        #neuron=0
 
         self.synapses = {}
 
