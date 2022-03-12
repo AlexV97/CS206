@@ -7,4 +7,10 @@
     <synapse sourceNeuronName = "0" targetNeuronName = "3" weight = "0.9" />
     <synapse sourceNeuronName = "1" targetNeuronName = "3" weight = "1.0" />
     <synapse sourceNeuronName = "2" targetNeuronName = "4" weight = "1.0" />
+    <synapse sourceNeuronName = "Torso" targetNeuronName = "Torso_BackLeg" weight = "0.5002230305421549" />
+    <synapse sourceNeuronName = "Torso" targetNeuronName = "Torso_FrontLeg" weight = "0.9036547235647956" />
+    <synapse sourceNeuronName = "BackLeg" targetNeuronName = "Torso_BackLeg" weight = "0.8285119119388363" />
+    <synapse sourceNeuronName = "BackLeg" targetNeuronName = "Torso_FrontLeg" weight = "0.5121700160390519" />
+    <synapse sourceNeuronName = "FrontLeg" targetNeuronName = "Torso_BackLeg" weight = "0.6610433023416794" />
+    <synapse sourceNeuronName = "FrontLeg" targetNeuronName = "Torso_FrontLeg" weight = "0.9908862082324653" />
 </neuralNetwork>

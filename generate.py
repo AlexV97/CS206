@@ -1,4 +1,5 @@
 import pyrosim.pyrosim as pyrosim
+import random
 l=1.0
 w=1.0
 h=1.0
@@ -38,7 +39,17 @@ def Generate_Body():
     pyrosim.End()
     
 def Generate_Brain():
+    sensor_dict = {
+        0:"Torso",
+        1:"BackLeg",
+        2:"FrontLeg"
+    }
+    motor_dict = {
+        3:"Torso_BackLeg",
+        4:"Torso_FrontLeg"
+    }
     pyrosim.Start_NeuralNetwork("brain.nndf")
+
     pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
     pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
     pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
@@ -62,6 +73,10 @@ def Generate_Brain():
     pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 0.9)
     pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
     pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+
+    for name_of_sensor_neuron in sensor_dict.keys():
+        for name_of_motor_neuron in motor_dict.keys():
+                pyrosim.Send_Synapse(sourceNeuronName = sensor_dict[name_of_sensor_neuron] , targetNeuronName = motor_dict[name_of_motor_neuron] , weight = random.uniform(-1,1))
 
     pyrosim.End()
     
