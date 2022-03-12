@@ -44,8 +44,25 @@ def Generate_Brain():
     pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
     pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
     pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
-    pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 1.0) #step 5 in synapses assignment
-    pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0) #step 34 in synapses assignment
+    ## Initital - moving slowly toward viewer/right
+    #pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
+    ## 2nd hopping up and down, not moving much
+    #pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 4 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+    ## 3rd hopping and rotating on itself
+    #pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 4 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 4 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+    ## 4th hopping forward
+    #pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 4 , weight = 0.9)
+    #pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+    ## 5th hopping twice forward then moving backward limping
+    pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 0.9)
+    pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
+    pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+
     pyrosim.End()
     
 Create_World()

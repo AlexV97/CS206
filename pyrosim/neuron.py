@@ -83,7 +83,7 @@ class NEURON:
         self.Threshold()
         #print("after for loop synapse_keys=", each_synapse_key, " - neurons value=", neurons[self.Get_Name()].Get_Value() )
         #print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
-        exit()
+        #exit()
     
 # -------------------------- Private methods -------------------------
 
