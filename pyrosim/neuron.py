@@ -64,25 +64,25 @@ class NEURON:
         self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
         
     def Allow_Presynaptic_Neuron_To_Influence_Me(self, weight, presynaptic_value):
-        print("Allow_Presynaptic_Neuron_To_Influence_Me() weight(", weight, ")*presynaptic_value(", presynaptic_value,")=", weight*presynaptic_value)
+        #print("Allow_Presynaptic_Neuron_To_Influence_Me() weight(", weight, ")*presynaptic_value(", presynaptic_value,")=", weight*presynaptic_value)
         return(weight*presynaptic_value)
 
     def Update_Hidden_Or_Motor_Neuron(self, neurons, synapses):
         #self.Set_Value(math.pi/4.0)
         self.Set_Value = 0
-        print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
+        #print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
         for each_synapse_key in synapses.keys():
-            print("synapses[each_synapse_key]=", synapses[each_synapse_key])
+            #print("synapses[each_synapse_key]=", synapses[each_synapse_key])
             if ( each_synapse_key[1] == self.Get_Name()):
-                print("pre-synaptic neurons =",each_synapse_key[0], " - post-synaptic neurons =",each_synapse_key[1] )
-                print("initial self.Get_Value()=",self.Get_Value())
+                #print("pre-synaptic neurons =",each_synapse_key[0], " - post-synaptic neurons =",each_synapse_key[1] )
+                #print("initial self.Get_Value()=",self.Get_Value())
                 val_to_add = self.Allow_Presynaptic_Neuron_To_Influence_Me(synapses[each_synapse_key].Get_Weight(), neurons[each_synapse_key[0]].Get_Value())
-                print("val_to_add=", val_to_add)
+                #print("val_to_add=", val_to_add)
                 self.Add_To_Value(val_to_add)
-                print("after self.Get_Value()=",self.Get_Value())
-
-        print("after for loop synapse_keys=", each_synapse_key, " - neurons value=", neurons[self.Get_Name()].Get_Value() )
-        print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
+        #        print("after self.Get_Value()=",self.Get_Value())
+        self.Threshold()
+        #print("after for loop synapse_keys=", each_synapse_key, " - neurons value=", neurons[self.Get_Name()].Get_Value() )
+        #print("neuron name=", self.Get_Name(), " - neuron value=", neurons[self.Get_Name()].Get_Value() )
         exit()
     
 # -------------------------- Private methods -------------------------
