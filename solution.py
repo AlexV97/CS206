@@ -2,6 +2,7 @@ import math
 import numpy as np
 import pyrosim.pyrosim as pyrosim
 import random
+import os
 class SOLUTION:
     def __init__(self):
         self.sensorNeurons=[0,1,2]
@@ -52,5 +53,6 @@ class SOLUTION:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3])
         
         pyrosim.End()
-
-
+        
+    def Evaluate(self):
+        os.system("python3 simulate.py")

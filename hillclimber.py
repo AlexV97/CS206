@@ -5,6 +5,6 @@ class HILL_CLIMBER:
         #pass
     
     def Evolve(self):
-        pass
+        self.parent.Evaluate()
 
 
