@@ -55,9 +55,19 @@ class SOLUTION:
         pyrosim.End()
         
     def Evaluate(self):
+        print("solution.py - Evaluate()")
         os.system("python3 simulate.py")
         
         f_read = open("fitness.txt", "r")
         self.fitness=float(f_read.read())
         print("solution - Evaluate() read fitness = ", self.fitness)
         f_read.close()
+
+    def Mutate(self):
+        print("solution.py - Mutate()")
+        randomRow=random.randint(0,2)       # 3 rows
+        randomColumn=random.randint(0,1)    # 2 columns
+        print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
+        my_random=random.random()
+        print("solution Mutate() random.random()=", my_random, "- (2*(random.random())-1)=", (2*(my_random)-1))
+        self.weights[randomRow,randomColumn] = (2*(random.random())-1)

@@ -21,6 +21,7 @@ class SIMULATION:
     def Run(self):
         #print("simulation - Run()")
         for i in range(c.indexRange):
+           #print("simulation - i=", i)
            #print("simulation - p.stepSimulation()")
            p.stepSimulation()
            #print("simulation - self.robot.Sense(i)")
