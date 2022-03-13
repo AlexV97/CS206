@@ -32,6 +32,9 @@ class SIMULATION:
            time.sleep(1/480);
         
         self.robot.Save_Values_Sensors()
+    
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
             
     def __del__(self):
         p.disconnect()

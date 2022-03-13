@@ -15,6 +15,8 @@ simulation = SIMULATION()
 simulation.Run()
 
 print("simulate.py: after simulation.Run()")
+simulation.Get_Fitness()
+print("simulate.py: Simulation Completed ")
 #physicsClient = p.connect(p.GUI)
 #p.setAdditionalSearchPath(pybullet_data.getDataPath())
 #p.setGravity(0,0,-9.8)
@@ -62,3 +64,4 @@ print("simulate.py: after simulation.Run()")
 def __del__(self):
     p.disconnect()
 #
+
