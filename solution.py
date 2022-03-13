@@ -4,19 +4,6 @@ import pyrosim.pyrosim as pyrosim
 import random
 class SOLUTION:
     def __init__(self):
-        #self.sensor_dict = {
-        #    0:"Torso",
-        #    1:"BackLeg",
-        #    2:"FrontLeg"
-        #}
-        #self.motor_dict = {
-        #    0:"Torso_BackLeg",  # neuron 3:
-        #    1:"Torso_FrontLeg"  # neuron 4:
-        #}
-        #self.motor_neuron_dict = {
-        #    3:"Torso_BackLeg",  # neuron 3:
-        #    4:"Torso_FrontLeg"  # neuron 4:
-        #}
         self.sensorNeurons=[0,1,2]
         self.motorNeurons=[3,4]
         self.weights = np.random.rand(3,2)
@@ -61,7 +48,7 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
 
         for currentRow in self.sensorNeurons:
-            for currentColumn in self.motorNeurons:  # index starts at 3 based on def in motor_dict
+            for currentColumn in self.motorNeurons:  
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3])
         
         pyrosim.End()
