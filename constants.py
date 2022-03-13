@@ -6,3 +6,4 @@ indexRange=500
 amplitude  = (math.pi)/4
 frequency = 10
 phaseOffset = (math.pi)/4
+numberOfGenerations = 2

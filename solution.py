@@ -56,3 +56,8 @@ class SOLUTION:
         
     def Evaluate(self):
         os.system("python3 simulate.py")
+        
+        f_read = open("fitness.txt", "r")
+        self.fitness=float(f_read.read())
+        print("solution - Evaluate() read fitness = ", self.fitness)
+        f_read.close()
