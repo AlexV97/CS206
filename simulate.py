@@ -11,6 +11,7 @@ import random
 
 from pathlib import Path
 
+print("*** Simulate ***")
 simulation = SIMULATION()
 simulation.Run()
 

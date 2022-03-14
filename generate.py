@@ -39,15 +39,15 @@ def Generate_Body():
     pyrosim.End()
     
 def Generate_Brain():
-    sensor_dict = {
-        0:"Torso",
-        1:"BackLeg",
-        2:"FrontLeg"
-    }
-    motor_dict = {
-        3:"Torso_BackLeg",
-        4:"Torso_FrontLeg"
-    }
+    #sensor_dict = {
+    #    0:"Torso",
+    #    1:"BackLeg",
+    #    2:"FrontLeg"
+    #}
+    #motor_dict = {
+    #    3:"Torso_BackLeg",
+    #    4:"Torso_FrontLeg"
+    #}
     pyrosim.Start_NeuralNetwork("brain.nndf")
 
     pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
@@ -70,16 +70,19 @@ def Generate_Brain():
     #pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
     #pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
     ## 5th hopping twice forward then moving backward limping
-    pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 0.9)
-    pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
-    pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 0 , targetNeuronName = 3 , weight = 0.9)
+    #pyrosim.Send_Synapse(sourceNeuronName = 1 , targetNeuronName = 3 , weight = 1.0)
+    #pyrosim.Send_Synapse(sourceNeuronName = 2 , targetNeuronName = 4 , weight = 1.0)
 
-    for name_of_sensor_neuron in sensor_dict.keys():
-        for name_of_motor_neuron in motor_dict.keys():
-                pyrosim.Send_Synapse(sourceNeuronName = sensor_dict[name_of_sensor_neuron] , targetNeuronName = motor_dict[name_of_motor_neuron] , weight = random.uniform(-1,1))
+    sensorNeurons=[0,1,2]
+    motorNeurons=[3,4]
+    for i in sensorNeurons:
+        for j in motorNeurons:
+            pyrosim.Send_Synapse(sourceNeuronName = i , targetNeuronName = j , weight = random.uniform(-1,1))
 
     pyrosim.End()
     
+print("*** Generate ***")
 Create_World()
 Create_Robot()
 Generate_Body()
