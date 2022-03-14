@@ -15,9 +15,6 @@ class SOLUTION:
         self.box1_x=0
         self.box1_y=0
         self.box1_z=(self.h)/2
-        self.Create_World()
-        self.Generate_Body()
-        self.Generate_Brain()
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
@@ -48,14 +45,20 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
         pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
 
+        print("solution Generate_Brain() self.sensorNeurons=", self.sensorNeurons)
+        print("solution Generate_Brain() self.motorNeurons=", self.motorNeurons)
         for currentRow in self.sensorNeurons:
-            for currentColumn in self.motorNeurons:  
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3])
+            for currentColumn in self.motorNeurons:
+                print("solution Generate_Brain() currentRow= ", currentRow, " - currentColumn=", currentColumn, " - weigth= ", self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
         
         pyrosim.End()
         
     def Evaluate(self):
         print("solution.py - Evaluate()")
+        self.Create_World()
+        self.Generate_Body()
+        self.Generate_Brain()
         os.system("python3 simulate.py")
         
         f_read = open("fitness.txt", "r")
@@ -70,4 +73,4 @@ class SOLUTION:
         print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
         my_random=random.random()
         print("solution Mutate() random.random()=", my_random, "- (2*(random.random())-1)=", (2*(my_random)-1))
-        self.weights[randomRow,randomColumn] = (2*(random.random())-1)
+        self.weights[randomRow,randomColumn] = (2*(my_random)-1)
