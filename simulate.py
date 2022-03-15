@@ -14,9 +14,9 @@ from pathlib import Path
 simulation = SIMULATION()
 simulation.Run()
 
-print("simulate.py: after simulation.Run()")
+#print("simulate.py: after simulation.Run()")
 simulation.Get_Fitness()
-print("simulate.py: Simulation Completed ")
+#print("simulate.py: Simulation Completed ")
 #physicsClient = p.connect(p.GUI)
 #p.setAdditionalSearchPath(pybullet_data.getDataPath())
 #p.setGravity(0,0,-9.8)

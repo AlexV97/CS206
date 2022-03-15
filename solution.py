@@ -45,17 +45,17 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
         pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
 
-        print("solution Generate_Brain() self.sensorNeurons=", self.sensorNeurons)
-        print("solution Generate_Brain() self.motorNeurons=", self.motorNeurons)
+        #print("solution Generate_Brain() self.sensorNeurons=", self.sensorNeurons)
+        #print("solution Generate_Brain() self.motorNeurons=", self.motorNeurons)
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
-                print("solution Generate_Brain() currentRow= ", currentRow, " - currentColumn=", currentColumn, " - weigth= ", self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
+                #print("solution Generate_Brain() currentRow= ", currentRow, " - currentColumn=", currentColumn, " - weigth= ", self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
         
         pyrosim.End()
         
     def Evaluate(self):
-        print("solution.py - Evaluate()")
+        #print("solution.py - Evaluate()")
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
@@ -67,10 +67,9 @@ class SOLUTION:
         f_read.close()
 
     def Mutate(self):
-        print("solution.py - Mutate()")
+        #print("solution.py - Mutate()")
         randomRow=random.randint(0,2)       # 3 rows
         randomColumn=random.randint(0,1)    # 2 columns
-        print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
+        #print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
         my_random=random.random()
-        print("solution Mutate() random.random()=", my_random, "- (2*(random.random())-1)=", (2*(my_random)-1))
         self.weights[randomRow,randomColumn] = (2*(my_random)-1)
