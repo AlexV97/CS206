@@ -63,7 +63,7 @@ class SOLUTION:
         
         f_read = open("fitness.txt", "r")
         self.fitness=float(f_read.read())
-        print("solution - Evaluate() read fitness = ", self.fitness)
+        #print("solution - Evaluate() read fitness = ", self.fitness)
         f_read.close()
 
     def Mutate(self):

@@ -5,13 +5,13 @@ class HILL_CLIMBER:
     def __init__(self):
         print("hillclimber - __init__()")
         self.parent = SOLUTION()
-        #self.child = SOLUTION() # needed?
         #pass
     
     def Evolve(self):
-        print("hillclimber - Evolve()")
+        print("*** hillclimber - Evolve() - calls self.parent.Evaluate()")
         self.parent.Evaluate()
         for currentGeneration in range(c.numberOfGenerations):
+            print("*** hillclimber - Evolve() - calls self.Evolve_For_One_Generation()")
             self.Evolve_For_One_Generation()
             
     def Spawn(self):
@@ -30,7 +30,11 @@ class HILL_CLIMBER:
         #self.child.Select()
         print("hillclimber - Select() - self.parent.fitness=", self.parent.fitness)
         print("hillclimber - Select() - self.child.fitness=", self.child.fitness)
-        exit()
+        if ( self.parent.fitness > self.child.fitness):
+            self.parent = self.child
+        print("hillclimber - Select() - after child replace parent - self.parent.fitness=", self.parent.fitness)
+        print("hillclimber - Select() - after child replace parent - self.child.fitness=", self.child.fitness)
+        #exit()
         
     def Evolve_For_One_Generation(self):
         print("hillclimber - Evolve_For_One_Generation()")

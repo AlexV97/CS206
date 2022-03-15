@@ -53,9 +53,9 @@ class ROBOT:
         #print("Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
         xCoordinateOfLinkZero = positionOfLinkZero[0]
         print("Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
-        #f_write = open("fitness.txt", "w")
-        #f_write.write(str(xCoordinateOfLinkZero))
-        #f_write.close()
+        f_write = open("fitness.txt", "w")
+        f_write.write(str(xCoordinateOfLinkZero))
+        f_write.close()
         exit()
         
         
