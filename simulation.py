@@ -30,7 +30,7 @@ class SIMULATION:
            self.robot.Think()
            #print("simulation - self.robot.Act()")
            self.robot.Act(i)
-           time.sleep(1/480);
+           ###@time.sleep(1/480);
         
         self.robot.Save_Values_Sensors()
     

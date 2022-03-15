@@ -27,14 +27,8 @@ class HILL_CLIMBER:
         
     def Select(self):
         print("hillclimber - Select()")
-        #self.child.Select()
-        print("hillclimber - Select() - self.parent.fitness=", self.parent.fitness)
-        print("hillclimber - Select() - self.child.fitness=", self.child.fitness)
         if ( self.parent.fitness > self.child.fitness):
             self.parent = self.child
-        print("hillclimber - Select() - after child replace parent - self.parent.fitness=", self.parent.fitness)
-        print("hillclimber - Select() - after child replace parent - self.child.fitness=", self.child.fitness)
-        #exit()
         
     def Evolve_For_One_Generation(self):
         print("hillclimber - Evolve_For_One_Generation()")
@@ -43,6 +37,10 @@ class HILL_CLIMBER:
         self.Spawn()
         self.Mutate()
         self.child.Evaluate()
+        self.Print()
         #exit() # step 62
         self.Select()
         #exit()
+
+    def Print(self):
+        print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
