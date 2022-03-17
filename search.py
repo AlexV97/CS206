@@ -5,6 +5,7 @@ hc = HILL_CLIMBER()
 
 #print("search.py just before hc.Evolve()")
 hc.Evolve()
+hc.Show_Best()
 #print("search.py after hc.Evolve()")
 #for loop_call in range(5):
 #    os.system("python3 generate.py")

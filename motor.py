@@ -21,7 +21,7 @@ class MOTOR:
         else:
             self.frequency = c.frequency
 
-        print("MOTOR Prepare_To_Act jointName=", self.jointName, " - frequency=", self.frequency)
+        #print("MOTOR Prepare_To_Act jointName=", self.jointName, " - frequency=", self.frequency)
 
         for i in range(c.indexRange):
             self.motorValues[i] = numpy.sin(math.pi/4)*numpy.sin(((i*2*self.frequency*math.pi/(c.indexRange))+self.offset))

@@ -8,10 +8,18 @@ import pyrosim.pyrosim as pyrosim
 import numpy
 import math
 import random
+import sys
 
 from pathlib import Path
 
-simulation = SIMULATION()
+#print("simulate.py number of arguments: ", len(sys.argv), " arguments")
+
+if ( len(sys.argv) == 2 ):
+    directOrGUI = sys.argv[1]
+else:
+    directOrGUI = 'DIRECT'
+
+simulation = SIMULATION(directOrGUI)
 simulation.Run()
 
 #print("simulate.py: after simulation.Run()")

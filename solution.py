@@ -54,17 +54,21 @@ class SOLUTION:
         
         pyrosim.End()
         
-    def Evaluate(self):
+    def Evaluate(self, directOrGUI):
         #print("solution.py - Evaluate()")
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
-        os.system("python3 simulate.py")
+        #os.system('python3 simulate.py DIRECT')
+        os_cmd = "python3 simulate.py "
+        os_cmd += directOrGUI
+        os.system(os_cmd)
         
         f_read = open("fitness.txt", "r")
         self.fitness=float(f_read.read())
         #print("solution - Evaluate() read fitness = ", self.fitness)
         f_read.close()
+        
 
     def Mutate(self):
         #print("solution.py - Mutate()")

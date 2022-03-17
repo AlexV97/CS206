@@ -9,7 +9,7 @@ class HILL_CLIMBER:
     
     def Evolve(self):
         #print("*** hillclimber - Evolve() - calls self.parent.Evaluate()")
-        self.parent.Evaluate()
+        self.parent.Evaluate("GUI") # to show first random solution in GUI
         for currentGeneration in range(c.numberOfGenerations):
             #print("*** hillclimber - Evolve() - calls self.Evolve_For_One_Generation()")
             print("*** Evolve() Generation = ", currentGeneration)
@@ -37,7 +37,7 @@ class HILL_CLIMBER:
         #print("hillclimber - self.child=", self.child)
         self.Spawn()
         self.Mutate()
-        self.child.Evaluate()
+        self.child.Evaluate("DIRECT")
         self.Print()
         #exit() # step 62
         self.Select()
@@ -45,3 +45,6 @@ class HILL_CLIMBER:
 
     def Print(self):
         print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
+
+    def Show_Best(self):
+        self.parent.Evaluate("GUI")
