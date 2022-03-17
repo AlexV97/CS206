@@ -1,11 +1,11 @@
 import os
-from hillclimber import HILL_CLIMBER
-import hillclimber as hc
-hc = HILL_CLIMBER()
+from parallelHillClimber import PARALLEL_HILL_CLIMBER
+import parallelHillClimber as phc
+phc = PARALLEL_HILL_CLIMBER()
 
 #print("search.py just before hc.Evolve()")
-hc.Evolve()
-hc.Show_Best()
+phc.Evolve()
+phc.Show_Best()
 #print("search.py after hc.Evolve()")
 #for loop_call in range(5):
 #    os.system("python3 generate.py")
