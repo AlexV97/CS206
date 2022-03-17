@@ -11,8 +11,9 @@ import time
 
 class SIMULATION:
     def __init__(self, directOrGUI):
+        self.directOrGUI = directOrGUI
         #print("simulation - constructor")
-        if ( directOrGUI == "DIRECT" ):
+        if ( self.directOrGUI == "DIRECT" ):
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
@@ -34,7 +35,8 @@ class SIMULATION:
            self.robot.Think()
            #print("simulation - self.robot.Act()")
            self.robot.Act(i)
-           ###@time.sleep(1/480);
+           if ( self.directOrGUI == "GUI"):
+            time.sleep(1/480);
         
         self.robot.Save_Values_Sensors()
     
