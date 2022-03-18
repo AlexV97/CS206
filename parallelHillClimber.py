@@ -6,16 +6,16 @@ class PARALLEL_HILL_CLIMBER:
         ##print("hillclimber - __init__()")
         #self.parent = SOLUTION()
         self.parents = {}
-        for entry_key in range(0,c.populationSize-1):
+        for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION()
-            print("parallellHillClimber for loop entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
-        print("parallellHillClimber - self.parents=", self.parents, " - c.populationSize", c.populationSize)
+            #print("parallellHillClimber for loop entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
+        #print("parallellHillClimber - self.parents=", self.parents, " - c.populationSize", c.populationSize)
         #pass
     
     def Evolve(self):
         ##print("*** hillclimber - Evolve() - calls self.parent.Evaluate()")
         #self.parent.Evaluate("GUI") # to show first random solution in GUI
-        for entry_key in range(0,c.populationSize-1):
+        for entry_key in range(0,c.populationSize):
             self.parents[entry_key].Evaluate("GUI") # to show first random solution in GUI
             print("parallellHillClimber Evolve() entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
         #for currentGeneration in range(c.numberOfGenerations):
