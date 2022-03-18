@@ -45,28 +45,23 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
         pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
 
-        #print("solution Generate_Brain() self.sensorNeurons=", self.sensorNeurons)
-        #print("solution Generate_Brain() self.motorNeurons=", self.motorNeurons)
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
-                #print("solution Generate_Brain() currentRow= ", currentRow, " - currentColumn=", currentColumn, " - weigth= ", self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
         
         pyrosim.End()
         
     def Evaluate(self, directOrGUI):
-        #print("solution.py - Evaluate()")
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
-        #os.system('python3 simulate.py DIRECT')
-        os_cmd = "python3 simulate.py "
-        os_cmd += directOrGUI
-        os.system(os_cmd)
-        
-        f_read = open("fitness.txt", "r")
+
+        os.system("python3 simulate.py " + directOrGUI + " &")
+        fitnessFileName = "fitness.txt"
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
+        f_read = open(fitnessFileName, "r")
         self.fitness=float(f_read.read())
-        #print("solution - Evaluate() read fitness = ", self.fitness)
         f_read.close()
         
 
