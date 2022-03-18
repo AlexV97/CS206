@@ -1,10 +1,11 @@
 import math
+import time
 import numpy as np
 import pyrosim.pyrosim as pyrosim
 import random
 import os
 class SOLUTION:
-    def __init__(self):
+    def __init__(self, myID_arg):
         self.sensorNeurons=[0,1,2]
         self.motorNeurons=[3,4]
         self.weights = np.random.rand(3,2)
@@ -15,6 +16,7 @@ class SOLUTION:
         self.box1_x=0
         self.box1_y=0
         self.box1_z=(self.h)/2
+        self.myID = myID_arg
 
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
@@ -57,7 +59,7 @@ class SOLUTION:
         self.Generate_Brain()
 
         os.system("python3 simulate.py " + directOrGUI + " &")
-        fitnessFileName = "fitness.txt"
+        fitnessFileName = "fitnessID.txt"
         while not os.path.exists(fitnessFileName):
             time.sleep(0.01)
         f_read = open(fitnessFileName, "r")
@@ -72,3 +74,6 @@ class SOLUTION:
         #print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
         my_random=random.random()
         self.weights[randomRow,randomColumn] = (2*(my_random)-1)
+    
+    def Set_ID(self):
+        self.myID +=1

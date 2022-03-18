@@ -6,8 +6,10 @@ class PARALLEL_HILL_CLIMBER:
         ##print("hillclimber - __init__()")
         #self.parent = SOLUTION()
         self.parents = {}
+        self.nextAvailableID = 0
         for entry_key in range(0,c.populationSize):
-            self.parents[entry_key] = SOLUTION()
+            self.parents[entry_key] = SOLUTION(self.nextAvailableID)
+            self.nextAvailableID += 1
             #print("parallellHillClimber for loop entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
         #print("parallellHillClimber - self.parents=", self.parents, " - c.populationSize", c.populationSize)
         #pass
@@ -27,6 +29,8 @@ class PARALLEL_HILL_CLIMBER:
     def Spawn(self):
         #print("hillclimber - Spawn()")
         self.child = copy.deepcopy(self.parent)
+        self.child.Set_ID()
+        self.nextAvailableID += 1
         
     def Mutate(self):
         #print("hillclimber - Mutate()")
