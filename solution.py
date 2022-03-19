@@ -17,6 +17,7 @@ class SOLUTION:
         self.box1_y=0
         self.box1_z=(self.h)/2
         self.myID = myID_arg
+        self.fitness = 0
 
     def Create_World(self):
         print("solution - Create_World() Start ")
@@ -58,25 +59,51 @@ class SOLUTION:
         pyrosim.End()
         print("solution - Generate_Brain() End brain_file_name=", brain_file_name)
         
-    def Evaluate(self, directOrGUI):
-        print("solution - Evaluate() Start ")
+#    def Evaluate(self, directOrGUI):
+#        print("solution - Evaluate() Start ")
+#        self.Create_World()
+#        self.Generate_Body()
+#        self.Generate_Brain()
+#
+#        os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
+#        #print("solution Evaluate() - os_commandLine= ", os_commandLine)
+#        os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
+#        fitnessFileName = "fitness"+str(self.myID)+".txt"
+#        #print("solution - Evaluate() fitnessFileName= ", fitnessFileName)
+#        while not os.path.exists(fitnessFileName):
+#            time.sleep(0.01)
+#        print("solution - Evaluate() DONE with while wait")
+#        f_read = open(fitnessFileName, "r")
+#        while not os.path.exists(fitnessFileName):
+#            time.sleep(0.01)
+#        self.fitness=float(f_read.read())
+#        print("self.fitness = ", self.fitness)
+#        f_read.close()
+#        print("solution - Evaluate() DONE reading fitnessFileName= ", fitnessFileName)
+
+   
+    def Start_Simulation(self, directOrGUI):
+        #print("solution - Start_Simulation() Start ")
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
         
         os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
-        print("solution Evaluate() - os_commandLine= ", os_commandLine)
         os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
+        print("solution - Start_Simulation() just started solution= ", str(self.myID))
+
+    def Wait_For_Simulation_To_End(self, directOrGUI):
         fitnessFileName = "fitness"+str(self.myID)+".txt"
-        print("solution - Evaluate() fitnessFileName= ", fitnessFileName)
         while not os.path.exists(fitnessFileName):
             time.sleep(0.01)
-        print("solution - Evaluate() DONE with while wait")
         f_read = open(fitnessFileName, "r")
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
         self.fitness=float(f_read.read())
         f_read.close()
-        print("solution - Evaluate() DONE reading fitnessFileName= ", fitnessFileName)
-
+        os.system("rm "+fitnessFileName)
+        #print("solution - Wait_For_Simulation_To_End() DONE reading fitnessFileName= ", fitnessFileName, " - fitness= ", self.fitness)
+        
     def Mutate(self):
         print("solution.py - Mutate()")
         randomRow=random.randint(0,2)       # 3 rows
