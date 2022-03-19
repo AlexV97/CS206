@@ -24,11 +24,11 @@ class ROBOT:
         brain_file = "brain"+str(self.solutionId)+".nndf"
         print("robot __init__() brain_file=", brain_file)
         self.nn = NEURAL_NETWORK(brain_file)
-        print("robot __init__() before delete")
-        os.system("ls brain*.nndf")
+        #print("robot __init__() before delete")
+        #os.system("ls brain*.nndf")
         os.system("rm "+brain_file)
-        print("robot __init__() after delete")
-        os.system("ls brain*.nndf")
+        #print("robot __init__() after delete") ### delete is working fine on this specific file
+        #os.system("ls brain*.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {
