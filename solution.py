@@ -38,9 +38,7 @@ class SOLUTION:
         pyrosim.End()
 
     def Generate_Brain(self):
-
-        pyrosim.Start_NeuralNetwork("brain.nndf")
-
+        pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
@@ -49,7 +47,7 @@ class SOLUTION:
 
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values: without -3, indexError out of bounds
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values
         
         pyrosim.End()
         
@@ -59,12 +57,15 @@ class SOLUTION:
         self.Generate_Brain()
 
         os.system("python3 simulate.py " + directOrGUI + " &")
-        fitnessFileName = "fitnessID.txt"
+        fitnessFileName = "fitness"+str(self.myID)+".txt"
+        print("solution - Evaluate() fitnessFileName= ", fitnessFileName)
         while not os.path.exists(fitnessFileName):
             time.sleep(0.01)
+        print("solution - Evaluate() DONE with while ")
         f_read = open(fitnessFileName, "r")
         self.fitness=float(f_read.read())
         f_read.close()
+        print("solution - Evaluate() DONE reading fitnessFileName= ", fitnessFileName)
         
 
     def Mutate(self):

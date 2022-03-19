@@ -21,33 +21,33 @@ class PARALLEL_HILL_CLIMBER:
             self.parents[entry_key].Evaluate("GUI") # to show first random solution in GUI
             print("parallellHillClimber Evolve() entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
         #for currentGeneration in range(c.numberOfGenerations):
-        #    #print("*** hillclimber - Evolve() - calls self.Evolve_For_One_Generation()")
+        #    #print("*** parallelHillClimber - Evolve() - calls self.Evolve_For_One_Generation()")
         #    print("*** Evolve() Generation = ", currentGeneration)
         #    self.Evolve_For_One_Generation()
         pass
             
     def Spawn(self):
-        #print("hillclimber - Spawn()")
+        print("parallelHillClimber - Spawn()")
         self.child = copy.deepcopy(self.parent)
         self.child.Set_ID()
         self.nextAvailableID += 1
         
     def Mutate(self):
-        #print("hillclimber - Mutate()")
+        #print("parallelHillClimber - Mutate()")
         self.child.Mutate()
-        #print("hillclimber - Mutate() - self.parent.weights= \n", self.parent.weights)
-        #print("hillclimber - Mutate() - self.child.weights= \n", self.child.weights)
+        #print("parallelHillClimber - Mutate() - self.parent.weights= \n", self.parent.weights)
+        #print("parallelHillClimber - Mutate() - self.child.weights= \n", self.child.weights)
         #exit()
         
     def Select(self):
-        #print("hillclimber - Select()")
+        #print("parallelHillClimber - Select()")
         if ( self.parent.fitness > self.child.fitness):
             self.parent = self.child
         
     def Evolve_For_One_Generation(self):
-        #print("hillclimber - Evolve_For_One_Generation()")
-        #print("hillclimber - self.parent=", self.parent)
-        #print("hillclimber - self.child=", self.child)
+        #print("parallelHillClimber - Evolve_For_One_Generation()")
+        #print("parallelHillClimber - self.parent=", self.parent)
+        #print("parallelHillClimber - self.child=", self.child)
         self.Spawn()
         self.Mutate()
         self.child.Evaluate("DIRECT")
