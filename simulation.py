@@ -2,6 +2,7 @@ from world import WORLD
 from robot import ROBOT
 from sensor import SENSOR
 from motor import MOTOR 
+from solution import SOLUTION
 
 import constants as c
 import pybullet as p

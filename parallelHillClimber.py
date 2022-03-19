@@ -3,7 +3,7 @@ import constants as c
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
-        ##print("hillclimber - __init__()")
+        print("parallelHillClimber - __init__()")
         #self.parent = SOLUTION()
         self.parents = {}
         self.nextAvailableID = 0
@@ -15,11 +15,11 @@ class PARALLEL_HILL_CLIMBER:
         #pass
     
     def Evolve(self):
-        print("*** hillclimber - Evolve() - calls self.parent.Evaluate()")
+        print("*** parallelHillClimber - Evolve()")
         #self.parent.Evaluate("GUI") # to show first random solution in GUI
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key].Evaluate("GUI") # to show first random solution in GUI
-            print("parallellHillClimber Evolve() entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
+            #print("parallellHillClimber Evolve() entry_key=", entry_key, "- self.parents=", self.parents[entry_key])
         #for currentGeneration in range(c.numberOfGenerations):
         #    #print("*** parallelHillClimber - Evolve() - calls self.Evolve_For_One_Generation()")
         #    print("*** Evolve() Generation = ", currentGeneration)

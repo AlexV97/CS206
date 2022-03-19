@@ -54,11 +54,12 @@ class ROBOT:
         #print("robot Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
         xCoordinateOfLinkZero = positionOfLinkZero[0]
         #print("robot Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
-        f_write = open("fitness.txt", "w")
+        solution_myID=0
+        fitnessFileName = "fitness"+str(solution_myID)+".txt"
+        f_write = open(fitnessFileName, "w")
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
-        #print("robot Get_Fitness() - wrote to file fitness.txt")
-        print("robot Get_Fitness() - DONE")
+        print("robot Get_Fitness() - DONE - fitnessFileName= ", fitnessFileName)
         exit()
         
         
