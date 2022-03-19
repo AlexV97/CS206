@@ -43,7 +43,7 @@ class SIMULATION:
         self.robot.Save_Values_Sensors()
     
     def Get_Fitness(self):
-        print("simulation Get_Fitness() Starts")
+        print("simulation Get_Fitness() Starts - self.directOrGUI = ", self.directOrGUI , " - = self.solutionID", self.solutionID)
         self.robot.Get_Fitness()
         print("simulation Get_Fitness() Done")
             

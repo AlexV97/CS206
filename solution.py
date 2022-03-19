@@ -63,8 +63,10 @@ class SOLUTION:
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
-
-        os.system("python3 simulate.py " + directOrGUI + " &")
+        
+        os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
+        print("solution Evaluate() - os_commandLine= ", os_commandLine)
+        os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
         fitnessFileName = "fitness"+str(self.myID)+".txt"
         print("solution - Evaluate() fitnessFileName= ", fitnessFileName)
         while not os.path.exists(fitnessFileName):

@@ -26,7 +26,7 @@ class ROBOT:
         self.nn = NEURAL_NETWORK(brain_file)
         #print("robot __init__() before delete")
         #os.system("ls brain*.nndf")
-        os.system("rm "+brain_file)
+        #os.system("rm "+brain_file)
         #print("robot __init__() after delete") ### delete is working fine on this specific file
         #os.system("ls brain*.nndf")
 

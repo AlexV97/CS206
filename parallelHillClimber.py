@@ -60,5 +60,5 @@ class PARALLEL_HILL_CLIMBER:
         print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
 
     def Show_Best(self):
-        self.parent.Evaluate("GUI")
-        #pass
+        #self.parent.Evaluate("GUI")
+        pass
