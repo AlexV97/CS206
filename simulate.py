@@ -14,12 +14,15 @@ from pathlib import Path
 
 #print("simulate.py number of arguments: ", len(sys.argv), " arguments")
 
-if ( len(sys.argv) == 2 ):
+if ( len(sys.argv) == 3 ):
     directOrGUI = sys.argv[1]
+    solutionID = sys.argv[2]
 else:
+    print("*** simulate - no arguments passed to directOrGUI and solutionID so assuming for now DIRECT and 0")
     directOrGUI = 'DIRECT'
+    solutionID = 0
 
-simulation = SIMULATION(directOrGUI)
+simulation = SIMULATION(directOrGUI, solutionID)
 simulation.Run()
 
 #print("simulate.py: after simulation.Run()")

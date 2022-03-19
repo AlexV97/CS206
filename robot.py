@@ -1,6 +1,7 @@
 import pybullet as p
 import numpy
 import constants as c
+import os
 import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
@@ -8,8 +9,9 @@ from sensor import SENSOR
 from motor import MOTOR
 
 class ROBOT:
-    def __init__(self):
+    def __init__(self, solution_ID):
         self.robotId = p.loadURDF("body.urdf")
+        self.solutionId = solution_ID
         pyrosim.Prepare_To_Simulate(self.robotId)
         self.Prepare_To_Sense()
         self.motors = {
@@ -19,7 +21,14 @@ class ROBOT:
         phaseOffset = c.phaseOffset
         for motor in pyrosim.jointNamesToIndices:
             self.motors[motor] = MOTOR(motor)
-        self.nn = NEURAL_NETWORK("brain.nndf")
+        brain_file = "brain"+str(self.solutionId)+".nndf"
+        print("robot __init__() brain_file=", brain_file)
+        self.nn = NEURAL_NETWORK(brain_file)
+        print("robot __init__() before delete")
+        os.system("ls brain*.nndf")
+        os.system("rm "+brain_file)
+        print("robot __init__() after delete")
+        os.system("ls brain*.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {
@@ -54,12 +63,11 @@ class ROBOT:
         #print("robot Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
         xCoordinateOfLinkZero = positionOfLinkZero[0]
         #print("robot Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
-        solution_myID=0
-        fitnessFileName = "fitness"+str(solution_myID)+".txt"
+        fitnessFileName = "fitness"+str(self.solutionId)+".txt"
         f_write = open(fitnessFileName, "w")
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
-        print("robot Get_Fitness() - DONE - fitnessFileName= ", fitnessFileName)
+        print("robot Get_Fitness() - DONE - fitnessFileName= ", fitnessFileName, " - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
         exit()
         
         
