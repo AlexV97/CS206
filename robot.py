@@ -22,7 +22,7 @@ class ROBOT:
         for motor in pyrosim.jointNamesToIndices:
             self.motors[motor] = MOTOR(motor)
         brain_file = "brain"+str(self.solutionId)+".nndf"
-        print("robot __init__() brain_file=", brain_file)
+        #print("robot __init__() brain_file=", brain_file)
         self.nn = NEURAL_NETWORK(brain_file)
         #print("robot __init__() before delete")
         #os.system("ls brain*")

@@ -9,9 +9,11 @@ class PARALLEL_HILL_CLIMBER:
         os.system("rm fitness*.nndf")
         self.parents = {}
         self.nextAvailableID = 0
+        print("phc __init__ self.parents = ")
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
+            print(" phc __init__() entry_key= ", entry_key, " - self.parents[entry_key].myID= ", self.parents[entry_key].myID)
     
     def Evolve(self):
         print("*** parallelHillClimber - Evolve()")
@@ -25,13 +27,24 @@ class PARALLEL_HILL_CLIMBER:
             
     def Spawn(self):
         print("parallelHillClimber - Spawn()")
-        self.child = copy.deepcopy(self.parent)
-        self.child.Set_ID(self.nextAvailableID)
-        self.nextAvailableID += 1
+        #self.child = copy.deepcopy(self.parent)
+        #self.child.Set_ID(self.nextAvailableID)
+        #self.nextAvailableID += 1
+        #
+        self.children = {}
+        for entry_key in range(0,c.populationSize):
+            self.children[entry_key] = copy.deepcopy(self.parents[entry_key])
+            self.children[entry_key].Set_ID(self.nextAvailableID)
+            self.nextAvailableID += 1
+            #print(" phc Spawn() entry_key= ", entry_key, " - self.children[entry_key].myID= ", self.children[entry_key].myID)
+        #exit()
+            
         
     def Mutate(self):
         print("parallelHillClimber - Mutate()")
-        self.child.Mutate()
+        #self.child.Mutate()
+        for entry_key in range(0,c.populationSize):
+            self.children[entry_key].Mutate()
         #exit()
         
     def Select(self):
@@ -41,17 +54,18 @@ class PARALLEL_HILL_CLIMBER:
         
     def Evolve_For_One_Generation(self):
         print("parallelHillClimber - Evolve_For_One_Generation()")
-        #self.Spawn()
-        #self.Mutate()
+        self.Spawn()
+        self.Mutate()
         #self.child.Evaluate("DIRECT")
         #self.Print()
         ##exit() # step 62
         #self.Select()
         ##exit()
-        pass
+        #pass
 
     def Print(self):
-        print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
+        #print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
+        pass
 
     def Show_Best(self):
         #self.parent.Evaluate("GUI")
