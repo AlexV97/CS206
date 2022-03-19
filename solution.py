@@ -19,11 +19,13 @@ class SOLUTION:
         self.myID = myID_arg
 
     def Create_World(self):
+        print("solution - Create_World() Start ")
         pyrosim.Start_SDF("world.sdf")
         pyrosim.Send_Cube(name="Box", pos=[(self.box1_x-2.0),(self.box1_y+2.0),self.box1_z] , size=[self.w,self.l,self.h])
         pyrosim.End()
 
     def Generate_Body(self):
+        print("solution - Generate_Body() Start ")
         pyrosim.Start_URDF("body.urdf")
         pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] , size=[self.w,self.l,self.h])
 
@@ -36,8 +38,10 @@ class SOLUTION:
         pyrosim.Send_Cube(name="FrontLeg", pos=[0.5,0,-0.5] , size=[self.w,self.l,self.h])
 
         pyrosim.End()
+        print("solution - Create_World() End ")
 
     def Generate_Brain(self):
+        print("solution - Generate_Brain() Start ")
         pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
@@ -50,8 +54,10 @@ class SOLUTION:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values
         
         pyrosim.End()
+        print("solution - Generate_Brain() End ")
         
     def Evaluate(self, directOrGUI):
+        print("solution - Evaluate() Start ")
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
@@ -66,7 +72,7 @@ class SOLUTION:
         self.fitness=float(f_read.read())
         f_read.close()
         print("solution - Evaluate() DONE reading fitnessFileName= ", fitnessFileName)
-        
+        print("solution - Generate_Brain() End ")
 
     def Mutate(self):
         #print("solution.py - Mutate()")
@@ -76,5 +82,5 @@ class SOLUTION:
         my_random=random.random()
         self.weights[randomRow,randomColumn] = (2*(my_random)-1)
     
-    def Set_ID(self):
-        self.myID +=1
+    def Set_ID(self, myID_arg):
+        self.myID = myID_arg

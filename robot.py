@@ -47,15 +47,18 @@ class ROBOT:
         self.nn.Print()
         
     def Get_Fitness(self):
+        print("robot Get_Fitness() - starts ")
         stateOfLinkZero = p.getLinkState(self.robotId,0) # self.robot
-        #print("Get_Fitness() -stateOfLinkZero =", stateOfLinkZero)
+        #print("robot Get_Fitness() -stateOfLinkZero =", stateOfLinkZero)
         positionOfLinkZero = stateOfLinkZero[0]
-        #print("Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
+        #print("robot Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        print("Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
+        #print("robot Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
         f_write = open("fitness.txt", "w")
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
+        #print("robot Get_Fitness() - wrote to file fitness.txt")
+        print("robot Get_Fitness() - DONE")
         exit()
         
         
