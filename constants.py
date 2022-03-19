@@ -7,4 +7,4 @@ amplitude  = (math.pi)/4
 frequency = 10
 phaseOffset = (math.pi)/4
 numberOfGenerations = 20
-populationSize = 10
+populationSize = 2

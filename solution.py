@@ -90,7 +90,7 @@ class SOLUTION:
         
         os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
         os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
-        print("solution - Start_Simulation() just started solution= ", str(self.myID))
+        #print("solution - Start_Simulation() just started solution= ", str(self.myID))
 
     def Wait_For_Simulation_To_End(self, directOrGUI):
         fitnessFileName = "fitness"+str(self.myID)+".txt"

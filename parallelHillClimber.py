@@ -13,16 +13,17 @@ class PARALLEL_HILL_CLIMBER:
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
-            print(" phc __init__() entry_key= ", entry_key, " - self.parents[entry_key].myID= ", self.parents[entry_key].myID)
+            #print(" phc __init__() entry_key= ", entry_key, " - self.parents[entry_key].myID= ", self.parents[entry_key].myID)
     
     def Evolve(self):
         print("*** parallelHillClimber - Evolve()")
-        for entry_key in range(0,c.populationSize):
-            self.parents[entry_key].Start_Simulation("DIRECT")
-        for entry_key in range(0,c.populationSize):
-            self.parents[entry_key].Wait_For_Simulation_To_End("DIRECT")
-            this_sol_fitness = self.parents[entry_key].fitness
-            print("phc Evolve() solution fitness=", this_sol_fitness)
+#        for entry_key in range(0,c.populationSize):
+#            self.parents[entry_key].Start_Simulation("DIRECT")
+#        for entry_key in range(0,c.populationSize):
+#            self.parents[entry_key].Wait_For_Simulation_To_End("DIRECT")
+#            this_sol_fitness = self.parents[entry_key].fitness
+#            print("phc Evolve() solution fitness=", this_sol_fitness)
+        self.Evaluate(self.parents)
         self.Evolve_For_One_Generation()
             
     def Spawn(self):
@@ -56,17 +57,27 @@ class PARALLEL_HILL_CLIMBER:
         print("parallelHillClimber - Evolve_For_One_Generation()")
         self.Spawn()
         self.Mutate()
-        #self.child.Evaluate("DIRECT")
-        #self.Print()
-        ##exit() # step 62
+        self.Evaluate(self.children)
+        self.Print()
         #self.Select()
         ##exit()
         #pass
 
     def Print(self):
-        #print("Parent Fitness= ", self.parent.fitness, " - Child Fitness= ", self.child.fitness)
-        pass
+        print("")
+        for entry_key in range(0,c.populationSize):
+            print("phc Print() entry_key= " , entry_key, " - Parent Fitness= ", self.parents[entry_key].fitness, " - Child Fitness= ", self.children[entry_key].fitness)
+        print("")
 
     def Show_Best(self):
         #self.parent.Evaluate("GUI")
         pass
+    
+    def Evaluate(self, solutions):
+        for entry_key in range(0,c.populationSize):
+            solutions[entry_key].Start_Simulation("DIRECT")
+        for entry_key in range(0,c.populationSize):
+            solutions[entry_key].Wait_For_Simulation_To_End("DIRECT")
+            #this_sol_fitness = solutions[entry_key].fitness
+            #print("phc Evaluate() solution fitness=", this_sol_fitness)
+        
