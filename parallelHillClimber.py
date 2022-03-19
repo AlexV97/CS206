@@ -50,8 +50,11 @@ class PARALLEL_HILL_CLIMBER:
         
     def Select(self):
         print("parallelHillClimber - Select()")
-        if ( self.parent.fitness > self.child.fitness):
-            self.parent = self.child
+        #if ( self.parent.fitness > self.child.fitness):
+        #    self.parent = self.child
+        for entry_key in range(0,c.populationSize):
+            if ( self.parents[entry_key].fitness > self.children[entry_key].fitness ):
+                self.parents[entry_key] = self.children[entry_key]
         
     def Evolve_For_One_Generation(self):
         print("parallelHillClimber - Evolve_For_One_Generation()")
@@ -59,7 +62,8 @@ class PARALLEL_HILL_CLIMBER:
         self.Mutate()
         self.Evaluate(self.children)
         self.Print()
-        #self.Select()
+        self.Select()
+        self.Print()
         ##exit()
         #pass
 
