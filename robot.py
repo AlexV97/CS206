@@ -22,13 +22,8 @@ class ROBOT:
         for motor in pyrosim.jointNamesToIndices:
             self.motors[motor] = MOTOR(motor)
         brain_file = "brain"+str(self.solutionId)+".nndf"
-        #print("robot __init__() brain_file=", brain_file)
         self.nn = NEURAL_NETWORK(brain_file)
-        #print("robot __init__() before delete")
-        #os.system("ls brain*")
         os.system("rm "+brain_file)
-        #print("robot __init__() after delete") ### delete is working fine on this specific file
-        #os.system("ls brain*.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {
@@ -58,24 +53,18 @@ class ROBOT:
     def Get_Fitness(self):
         #print("robot Get_Fitness() - starts ")
         stateOfLinkZero = p.getLinkState(self.robotId,0) # self.robot
-        #print("robot Get_Fitness() -stateOfLinkZero =", stateOfLinkZero)
         positionOfLinkZero = stateOfLinkZero[0]
-        #print("robot Get_Fitness() -positionOfLinkZero =", positionOfLinkZero)
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        #print("robot Get_Fitness() -xCoordinateOfLinkZero =", xCoordinateOfLinkZero)
 
-        #print("robot Get_Fitness() solution= ", self.solutionId, " list of files before move= " )
-        #os.system("ls *tmp* *fitness*")
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
         os_command_line += " fitness"+str(self.solutionId)+".txt "
         os.system(os_command_line)
-        #print("robot Get_Fitness() - os_command_line= ", os_command_line )
+
         f_write = open(fitnessFileName, "w")
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
-        #print("robot Get_Fitness() solution= ", self.solutionId, " list of files after move= " )
-        #os.system("ls *tmp* *fitness*")
+
         #print("robot Get_Fitness() - DONE - fitnessFileName= ", fitnessFileName, " - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
         exit()
         

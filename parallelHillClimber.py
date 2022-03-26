@@ -4,25 +4,18 @@ import os
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
-        print("parallelHillClimber - __init__()")
+        #print("parallelHillClimber - __init__()")
         os.system("rm brain*.nndf")
         os.system("rm fitness*.nndf")
         self.parents = {}
         self.nextAvailableID = 0
-        print("phc __init__ self.parents = ")
+
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
-            #print(" phc __init__() entry_key= ", entry_key, " - self.parents[entry_key].myID= ", self.parents[entry_key].myID)
     
     def Evolve(self):
-        print("*** parallelHillClimber - Evolve()")
-#        for entry_key in range(0,c.populationSize):
-#            self.parents[entry_key].Start_Simulation("DIRECT")
-#        for entry_key in range(0,c.populationSize):
-#            self.parents[entry_key].Wait_For_Simulation_To_End("DIRECT")
-#            this_sol_fitness = self.parents[entry_key].fitness
-#            print("phc Evolve() solution fitness=", this_sol_fitness)
+        #print("*** parallelHillClimber - Evolve()")
         self.Evaluate(self.parents)
         self.Evolve_For_One_Generation()
             
@@ -63,9 +56,9 @@ class PARALLEL_HILL_CLIMBER:
         self.Evaluate(self.children)
         self.Print()
         self.Select()
+        print("phc Evolve_For_One_Generation() after Select()")
         self.Print()
-        ##exit()
-        #pass
+
 
     def Print(self):
         print("")
@@ -74,12 +67,19 @@ class PARALLEL_HILL_CLIMBER:
         print("")
 
     def Show_Best(self):
-        #self.parent.Evaluate("GUI")
-        pass
+        entry_key_lowest_parent = -1
+        lowest_fitness=999
+        for entry_key in range(0,c.populationSize):
+            if ( self.parents[entry_key].fitness < lowest_fitness ):
+                entry_key_lowest_parent = entry_key
+                lowest_fitness          = self.parents[entry_key].fitness
+        print("phc Show_Best() lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
+        self.parents[entry_key].Start_Simulation("GUI", 1)
+                
     
     def Evaluate(self, solutions):
         for entry_key in range(0,c.populationSize):
-            solutions[entry_key].Start_Simulation("DIRECT")
+            solutions[entry_key].Start_Simulation("DIRECT", 0)
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Wait_For_Simulation_To_End("DIRECT")
             #this_sol_fitness = solutions[entry_key].fitness

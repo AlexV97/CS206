@@ -20,13 +20,13 @@ class SOLUTION:
         self.fitness = 0
 
     def Create_World(self):
-        print("solution - Create_World() Start ")
+        #print("solution - Create_World() Start ")
         pyrosim.Start_SDF("world.sdf")
         pyrosim.Send_Cube(name="Box", pos=[(self.box1_x-2.0),(self.box1_y+2.0),self.box1_z] , size=[self.w,self.l,self.h])
         pyrosim.End()
 
     def Generate_Body(self):
-        print("solution - Generate_Body() Start ")
+        #print("solution - Generate_Body() Start ")
         pyrosim.Start_URDF("body.urdf")
         pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] , size=[self.w,self.l,self.h])
 
@@ -39,12 +39,11 @@ class SOLUTION:
         pyrosim.Send_Cube(name="FrontLeg", pos=[0.5,0,-0.5] , size=[self.w,self.l,self.h])
 
         pyrosim.End()
-        print("solution - Create_World() End ")
+        #print("solution - Create_World() End ")
 
     def Generate_Brain(self): # Send_Brain() ?
-        print("solution - Generate_Brain() Start ")
+        #print("solution - Generate_Brain() Start ")
         brain_file_name = "brain"+str(self.myID)+".nndf"
-        print("Generate_Brain brain_file_name=", brain_file_name)
         pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
@@ -57,40 +56,22 @@ class SOLUTION:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values
         
         pyrosim.End()
-        print("solution - Generate_Brain() End brain_file_name=", brain_file_name)
-        
-#    def Evaluate(self, directOrGUI):
-#        print("solution - Evaluate() Start ")
-#        self.Create_World()
-#        self.Generate_Body()
-#        self.Generate_Brain()
-#
-#        os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
-#        #print("solution Evaluate() - os_commandLine= ", os_commandLine)
-#        os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
-#        fitnessFileName = "fitness"+str(self.myID)+".txt"
-#        #print("solution - Evaluate() fitnessFileName= ", fitnessFileName)
-#        while not os.path.exists(fitnessFileName):
-#            time.sleep(0.01)
-#        print("solution - Evaluate() DONE with while wait")
-#        f_read = open(fitnessFileName, "r")
-#        while not os.path.exists(fitnessFileName):
-#            time.sleep(0.01)
-#        self.fitness=float(f_read.read())
-#        print("self.fitness = ", self.fitness)
-#        f_read.close()
-#        print("solution - Evaluate() DONE reading fitnessFileName= ", fitnessFileName)
-
    
-    def Start_Simulation(self, directOrGUI):
-        #print("solution - Start_Simulation() Start ")
+    def Start_Simulation(self, directOrGUI, lastSimul):
+        print("solution - Start_Simulation() Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
-        
-        os_commandLine = "python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &"
-        os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
-        #print("solution - Start_Simulation() just started solution= ", str(self.myID))
+        if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) )
+            #os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2&>1 ")
+        else:
+            #works#os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " &")
+            #os.system("python3 simulate.py GUI 0 2&>1 &")
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2&>1 &")
+
+        print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
+
 
     def Wait_For_Simulation_To_End(self, directOrGUI):
         fitnessFileName = "fitness"+str(self.myID)+".txt"
@@ -105,10 +86,9 @@ class SOLUTION:
         #print("solution - Wait_For_Simulation_To_End() DONE reading fitnessFileName= ", fitnessFileName, " - fitness= ", self.fitness)
         
     def Mutate(self):
-        print("solution.py - Mutate()")
+        #print("solution.py - Mutate()")
         randomRow=random.randint(0,2)       # 3 rows
         randomColumn=random.randint(0,1)    # 2 columns
-        #print("solution.py - randomRow=", randomRow, " - randomColumn=", randomColumn)
         my_random=random.random()
         self.weights[randomRow,randomColumn] = (2*(my_random)-1)
     
