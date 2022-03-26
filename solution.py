@@ -40,8 +40,10 @@ class SOLUTION:
         pyrosim.Send_Cube(name="BackLeg", pos=[-0.5,0,-0.5] , size=[self.w,self.l,self.h])
         
         pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" ,
-        type = "revolute", position = [2.0,0,1.0])
-        pyrosim.Send_Cube(name="FrontLeg", pos=[0.5,0,-0.5] , size=[self.w,self.l,self.h])
+        #type = "revolute", position = [2.0,0,1.0])
+        type = "revolute", position = [0,0.5,1.0])
+        #pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[self.w,self.l,self.h])
+        pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])
 
         pyrosim.End()
         #print("solution - Create_World() End ")
