@@ -8,3 +8,5 @@ frequency = 10
 phaseOffset = (math.pi)/4
 numberOfGenerations = 10
 populationSize = 10
+numSensorNeurons = 3
+numMotorNeurons = 2

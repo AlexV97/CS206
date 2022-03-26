@@ -4,10 +4,13 @@ import numpy as np
 import pyrosim.pyrosim as pyrosim
 import random
 import os
+import constants as c
 class SOLUTION:
     def __init__(self, myID_arg):
-        self.sensorNeurons=[0,1,2]
-        self.motorNeurons=[3,4]
+        #self.sensorNeurons=[0,1,2]
+        self.sensorNeurons=[0,1,c.numMotorNeurons]
+        #self.motorNeurons=[3,4]
+        self.motorNeurons=[c.numSensorNeurons,4]
         self.weights = np.random.rand(3,2)
         self.weights = 2*(self.weights)-1
         self.l=1.0
@@ -47,15 +50,19 @@ class SOLUTION:
         pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-        pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
-        pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
+        #pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=c.numMotorNeurons, linkName="FrontLeg")
+        #pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
+        pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons, jointName = "Torso_BackLeg")
         pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
 
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values
+                #pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-3]) #aligns weights with neuron values
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-c.numSensorNeurons]) #aligns weights with neuron values
         
         pyrosim.End()
+        #exit()
    
     def Start_Simulation(self, directOrGUI, lastSimul):
         print("solution - Start_Simulation() Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
