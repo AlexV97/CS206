@@ -11,7 +11,8 @@ class SOLUTION:
         self.sensorNeurons=[0,1,c.numMotorNeurons]
         #self.motorNeurons=[3,4]
         self.motorNeurons=[c.numSensorNeurons,4]
-        self.weights = np.random.rand(3,2)
+        #self.weights = np.random.rand(3,2)
+        self.weights = np.random.rand(c.numSensorNeurons,c.numMotorNeurons)
         self.weights = 2*(self.weights)-1
         self.l=1.0
         self.w=1.0
@@ -47,6 +48,10 @@ class SOLUTION:
         #pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[self.w,self.l,self.h])
         pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])    ### pos=[0,0.5,0] , size=[0.2,1,0.2])
 
+        pyrosim.Send_Joint(name = "Torso_LeftLeg" , parent= "Torso" , child = "LeftLeg" ,
+        type = "revolute", position = [-0.5,0,1], jointAxis = "1 0 0")
+        pyrosim.Send_Cube(name="LeftLeg", pos=[-0.5,0,0] , size=[1,0.2,0.2])    ### pos=[0,0.5,0] , size=[0.2,1,0.2])
+
         pyrosim.End()
         #print("solution - Create_World() End ")
         #exit()
@@ -57,11 +62,12 @@ class SOLUTION:
         pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-        #pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
-        pyrosim.Send_Sensor_Neuron(name=c.numMotorNeurons, linkName="FrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=c.numMotorNeurons, linkName="LeftLeg")
         #pyrosim.Send_Motor_Neuron( name = 3, jointName = "Torso_BackLeg")
         pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons, jointName = "Torso_BackLeg")
-        pyrosim.Send_Motor_Neuron( name = 4, jointName = "Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons+1, jointName = "Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons+2, jointName = "Torso_LeftLeg")
 
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
