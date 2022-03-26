@@ -37,18 +37,19 @@ class SOLUTION:
 
         pyrosim.Send_Joint(name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" ,
         #type = "revolute", position = [1.0,0,1.0])
-        type = "revolute", position = [0,-0.5,1.0])
+        type = "revolute", position = [0,-0.5,1.0], jointAxis = "1 0 0")        ### position = [0,-0.5,1.0], jointAxis = "0 1 0")
         #pyrosim.Send_Cube(name="BackLeg", pos=[-0.5,0,-0.5] , size=[self.w,self.l,self.h])
         pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
          
         pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" ,
         #type = "revolute", position = [2.0,0,1.0])
-        type = "revolute", position = [0,0.5,1.0])
+        type = "revolute", position = [0,0.5,1.0], jointAxis = "1 0 0")         ### position = [0,0.5,1.0], jointAxis = "0 1 0"
         #pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[self.w,self.l,self.h])
-        pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])
+        pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])    ### pos=[0,0.5,0] , size=[0.2,1,0.2])
 
         pyrosim.End()
         #print("solution - Create_World() End ")
+        #exit()
 
     def Generate_Brain(self): # Send_Brain() ?
         #print("solution - Generate_Brain() Start ")
