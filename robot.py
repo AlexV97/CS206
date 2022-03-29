@@ -66,7 +66,7 @@ class ROBOT:
         f_write.close()
 
         #print("robot Get_Fitness() - DONE - fitnessFileName= ", fitnessFileName, " - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
-        exit()
+        #exit()
         
         
     
