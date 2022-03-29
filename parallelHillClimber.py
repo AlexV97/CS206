@@ -74,15 +74,24 @@ class PARALLEL_HILL_CLIMBER:
             if ( self.parents[entry_key].fitness < lowest_fitness ):
                 entry_key_lowest_parent = entry_key
                 lowest_fitness          = self.parents[entry_key].fitness
-        print("phc Show_Best() lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
-        self.parents[entry_key].Start_Simulation("GUI", 1)
+        print("*** phc Show_Best() Simulating lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
+        self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
                 
     
     def Evaluate(self, solutions):
+
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Start_Simulation("DIRECT", 0)
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Wait_For_Simulation_To_End("DIRECT")
+            
+        #entry_key_lowest_parent = -1
+        #lowest_fitness=999
+        #for entry_key in range(0,c.populationSize):
+        #    if ( self.parents[entry_key].fitness < lowest_fitness ):
+        #        entry_key_lowest_parent = entry_key
+        #        lowest_fitness          = self.parents[entry_key].fitness
+        #print("*** phc Evaluate() lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
             #this_sol_fitness = solutions[entry_key].fitness
             #print("phc Evaluate() solution fitness=", this_sol_fitness)
         

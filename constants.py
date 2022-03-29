@@ -1,12 +1,14 @@
 import math
 
 # number of steps in simulation
-indexRange=2500
+indexRange          = 2500
 # if common parameters for both legs
-amplitude  = (math.pi)/4
-frequency = 10
-phaseOffset = (math.pi)/4
-numberOfGenerations = 2
-populationSize = 2
-numSensorNeurons = 9#4 #3
-numMotorNeurons = 8#3 #2
+amplitude           = (math.pi)/4
+frequency           = 10
+phaseOffset         = (math.pi)/4
+numberOfGenerations = 10
+populationSize      = 10
+numSensorNeurons    = 9    #4 #3
+numMotorNeurons     = 8     #3 #2
+motorJointRange     = 0.2 # 0.4 #0.33 #
+ 
