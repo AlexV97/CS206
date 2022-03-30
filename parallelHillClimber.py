@@ -5,7 +5,6 @@ import time
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
-        #print("parallelHillClimber - __init__()")
         os.system("rm brain*.nndf")
         os.system("rm fitness*.nndf")
         self.parents = {}
@@ -16,48 +15,36 @@ class PARALLEL_HILL_CLIMBER:
             self.nextAvailableID += 1
     
     def Evolve(self):
-        #print("*** parallelHillClimber - Evolve()")
         self.Evaluate(self.parents)
         self.Evolve_For_One_Generation()
             
     def Spawn(self):
-        print("parallelHillClimber - Spawn()")
-        #self.child = copy.deepcopy(self.parent)
-        #self.child.Set_ID(self.nextAvailableID)
-        #self.nextAvailableID += 1
-        #
+        #print("parallelHillClimber - Spawn()")
         self.children = {}
         for entry_key in range(0,c.populationSize):
             self.children[entry_key] = copy.deepcopy(self.parents[entry_key])
             self.children[entry_key].Set_ID(self.nextAvailableID)
             self.nextAvailableID += 1
-            #print(" phc Spawn() entry_key= ", entry_key, " - self.children[entry_key].myID= ", self.children[entry_key].myID)
-        #exit()
-            
         
     def Mutate(self):
-        print("parallelHillClimber - Mutate()")
-        #self.child.Mutate()
+        #print("parallelHillClimber - Mutate()")
         for entry_key in range(0,c.populationSize):
             self.children[entry_key].Mutate()
-        #exit()
         
     def Select(self):
-        print("parallelHillClimber - Select()")
-        #if ( self.parent.fitness > self.child.fitness):
-        #    self.parent = self.child
         for entry_key in range(0,c.populationSize):
+            #if ( self.parents[entry_key].fitness < self.children[entry_key].fitness ):
             if ( self.parents[entry_key].fitness > self.children[entry_key].fitness ):
                 self.parents[entry_key] = self.children[entry_key]
         
     def Evolve_For_One_Generation(self):
-        print("parallelHillClimber - Evolve_For_One_Generation()")
+        #print("parallelHillClimber - Evolve_For_One_Generation()")
         self.Spawn()
         self.Mutate()
         self.Evaluate(self.children)
-        self.Print()
+        #self.Print()
         self.Select()
-        print("phc Evolve_For_One_Generation() after Select()")
+        #print("phc Evolve_For_One_Generation() after Select()")
         self.Print()
 
 
@@ -74,7 +61,7 @@ class PARALLEL_HILL_CLIMBER:
             if ( self.parents[entry_key].fitness < lowest_fitness ):
                 entry_key_lowest_parent = entry_key
                 lowest_fitness          = self.parents[entry_key].fitness
-        print("*** phc Show_Best() Simulating lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
+        #print("*** phc Show_Best() Simulating lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
         self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
                 
     
@@ -85,13 +72,4 @@ class PARALLEL_HILL_CLIMBER:
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Wait_For_Simulation_To_End("DIRECT")
             
-        #entry_key_lowest_parent = -1
-        #lowest_fitness=999
-        #for entry_key in range(0,c.populationSize):
-        #    if ( self.parents[entry_key].fitness < lowest_fitness ):
-        #        entry_key_lowest_parent = entry_key
-        #        lowest_fitness          = self.parents[entry_key].fitness
-        #print("*** phc Evaluate() lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
-            #this_sol_fitness = solutions[entry_key].fitness
-            #print("phc Evaluate() solution fitness=", this_sol_fitness)
         

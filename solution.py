@@ -32,45 +32,40 @@ class SOLUTION:
     def Generate_Body(self):
         #print("solution - Generate_Body() Start ")
         pyrosim.Start_URDF("body.urdf")
-        #pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] , size=[self.w,self.l,self.h])
+        
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1] , size=[self.w,self.l,self.h])
-
-
-        pyrosim.Send_Joint(name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" ,
-        type = "revolute", position = [0,-0.5,1.0], jointAxis = "1 0 0") #jointAxis = "-1 0 0") #jointAxis = "0 0 1") #jointAxis = "1 1 0") #, jointAxis = "1 0 0")
         pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
-        
-        pyrosim.Send_Joint(name = "BackLeg_BackLowerLeg" , parent= "BackLeg" , child = "BackLowerLeg" ,
-        type = "revolute", position = [0,-1,0], jointAxis = "0 0 1") #jointAxis = "0 0 -1")
-        pyrosim.Send_Cube(name="BackLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
-         
-        pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" ,
-        type = "revolute", position = [0,0.5,1.0], jointAxis = "1 0 0") #jointAxis = "0 0 1") #jointAxis = "1 1 0") #, jointAxis = "1 0 0")
         pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])
-        
-        pyrosim.Send_Joint(name = "FrontLeg_FrontLowerLeg" , parent= "FrontLeg" , child = "FrontLowerLeg" ,
-        type = "revolute", position = [0,1,0], jointAxis = "0 0 1")
-        pyrosim.Send_Cube(name="FrontLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
-
-        pyrosim.Send_Joint(name = "Torso_LeftLeg" , parent= "Torso" , child = "LeftLeg" ,
-        type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")#jointAxis = "-1 0 0") #jointAxis = "0 0 1") #jointAxis = "1 1 0") #, jointAxis = "1 0 0")
         pyrosim.Send_Cube(name="LeftLeg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
-        
-        pyrosim.Send_Joint(name = "LeftLeg_LeftLowerLeg" , parent= "LeftLeg" , child = "LeftLowerLeg" ,
-        type = "revolute", position = [-1,0,0], jointAxis = "0 0 1") #jointAxis = "0 0 -1")
-        pyrosim.Send_Cube(name="LeftLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
-        
-        pyrosim.Send_Joint(name = "Torso_RightLeg" , parent= "Torso" , child = "RightLeg" ,
-        type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0") #jointAxis = "0 -1 0") #jointAxis = "1 1 0") #, jointAxis = "1 0 0")
         pyrosim.Send_Cube(name="RightLeg", pos=[0.5,0,0] , size=[1,0.2,0.2])
         
-        pyrosim.Send_Joint(name = "RightLeg_RightLowerLeg" , parent= "RightLeg" , child = "RightLowerLeg" ,
-        type = "revolute", position = [1,0,0], jointAxis = "0 0 1")
+        pyrosim.Send_Cube(name="BackLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+        pyrosim.Send_Cube(name="FrontLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+        pyrosim.Send_Cube(name="LeftLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
         pyrosim.Send_Cube(name="RightLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+         
+        pyrosim.Send_Joint(name = "Torso_BackLeg" , parent= "Torso" , child = "BackLeg" ,
+        type = "revolute", position = [0,-0.5,1.0], jointAxis = "1 0 0")
+        pyrosim.Send_Joint(name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" ,
+        type = "revolute", position = [0,0.5,1.0], jointAxis = "1 0 0")
+        pyrosim.Send_Joint(name = "Torso_LeftLeg" , parent= "Torso" , child = "LeftLeg" ,
+        type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")
+        pyrosim.Send_Joint(name = "Torso_RightLeg" , parent= "Torso" , child = "RightLeg" ,
+        type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
+        
+        
+        pyrosim.Send_Joint(name = "BackLeg_BackLowerLeg" , parent= "BackLeg" , child = "BackLowerLeg" ,
+        type = "revolute", position = [0,-1,0], jointAxis = "1 0 0") #jointAxis = "0 0 1")
+        pyrosim.Send_Joint(name = "FrontLeg_FrontLowerLeg" , parent= "FrontLeg" , child = "FrontLowerLeg" ,
+        type = "revolute", position = [0,1,0], jointAxis = "1 0 0") #jointAxis = "0 0 1")
+        pyrosim.Send_Joint(name = "LeftLeg_LeftLowerLeg" , parent= "LeftLeg" , child = "LeftLowerLeg" ,
+        type = "revolute", position = [-1,0,0], jointAxis = "0 1 0") #jointAxis = "0 0 1")
+        pyrosim.Send_Joint(name = "RightLeg_RightLowerLeg" , parent= "RightLeg" , child = "RightLowerLeg" ,
+        type = "revolute", position = [1,0,0], jointAxis = "0 1 0") #jointAxis = "0 0 1")
+   
 
         pyrosim.End()
         #print("solution - Create_World() End ")
-        #exit()
 
     def Generate_Brain(self): # Send_Brain() ?
         #print("solution - Generate_Brain() Start ")
@@ -95,21 +90,20 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons+6, jointName = "LeftLeg_LeftLowerLeg")
         pyrosim.Send_Motor_Neuron( name = c.numSensorNeurons+7, jointName = "RightLeg_RightLowerLeg")
 
-        print("c.numSensorNeurons=", c.numSensorNeurons)
-        print("self.sensorNeurons=", self.sensorNeurons)
-        print("c.numMotorNeurons=", c.numMotorNeurons)
-        print("self.motorNeurons=", self.motorNeurons)
-        print("self.weights=", self.weights)
+        #print("c.numSensorNeurons=", c.numSensorNeurons)
+        #print("self.sensorNeurons=", self.sensorNeurons)
+        #print("c.numMotorNeurons=", c.numMotorNeurons)
+        #print("self.motorNeurons=", self.motorNeurons)
+        #print("self.weights=", self.weights)
 
         for currentRow in self.sensorNeurons:
             for currentColumn in self.motorNeurons:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-c.numSensorNeurons]) #aligns weights with neuron values
         
         pyrosim.End()
-        #exit()
    
     def Start_Simulation(self, directOrGUI, lastSimul):
-        print("solution - Start_Simulation() Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
+        #print("solution - Start_Simulation() Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
@@ -120,7 +114,7 @@ class SOLUTION:
             #os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2&>1 &")
             os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul &")
 
-        print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
+        #print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
 
 
     def Wait_For_Simulation_To_End(self, directOrGUI):

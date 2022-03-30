@@ -25,7 +25,7 @@ class SIMULATION:
         self.robot = ROBOT(self.solutionID)
         
     def Run(self):
-        print("simulation - Run()")
+        #print("simulation - Run()")
         for i in range(c.indexRange):
            #print("simulation - i=", i)
            p.stepSimulation()
@@ -38,9 +38,9 @@ class SIMULATION:
         self.robot.Save_Values_Sensors()
     
     def Get_Fitness(self):
-        print("simulation Get_Fitness() Starts - self.directOrGUI = ", self.directOrGUI , " - = self.solutionID", self.solutionID)
+        #print("simulation Get_Fitness() Starts - self.directOrGUI = ", self.directOrGUI , " - = self.solutionID", self.solutionID)
         self.robot.Get_Fitness()
-        print("simulation Get_Fitness() Done")
+        #print("simulation Get_Fitness() Done")
             
     def __del__(self):
         p.disconnect()

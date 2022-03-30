@@ -23,6 +23,7 @@ class MOTOR:
         for i in range(c.indexRange):
             self.motorValues[i] = numpy.sin(math.pi/4)*numpy.sin(((i*2*self.frequency*math.pi/(c.indexRange))+self.offset))
 
+
     def Set_Value(self,desiredAngle, currentrobot):
         desiredAngle = pyrosim.Set_Motor_For_Joint(
             bodyIndex = currentrobot.robotId,  #robot,
