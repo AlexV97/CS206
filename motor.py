@@ -5,30 +5,24 @@ import math
 import pyrosim.pyrosim as pyrosim
 
 class MOTOR:
-    def __init__(self, jointName):
+    def __init__(self,
+                jointName,
+                amplitude,
+                frequency,
+                phaseOffset):
         self.jointName = jointName
-        self.motorValues = numpy.zeros(c.indexRange)
+        self.amplitude = amplitude
+        self.frequency = frequency
+        self.phaseOffset = phaseOffset
+        self.motorValues = (amplitude * numpy.sin(frequency)*numpy.linspace(0, 2*numpy.pi, c.indexRange)+self.phaseOffset)
+        #self.motorValues = numpy.zeros(c.indexRange)
+        #self.Prepare_To_Act()
 
-        self.Prepare_To_Act()
-        
-        
-    def Prepare_To_Act(self):
-        self.amplitude = c.amplitude
-        self.offset    = c.phaseOffset
-        if ( (self.jointName == "Torso_BackLeg") or (self.jointName == "Torso_FrontLeg") ):
-            self.frequency = c.frequency/2
-        else:
-            self.frequency = c.frequency
-
-        for i in range(c.indexRange):
-            self.motorValues[i] = numpy.sin(math.pi/4)*numpy.sin(((i*2*self.frequency*math.pi/(c.indexRange))+self.offset))
-
-
-    def Set_Value(self,desiredAngle, currentrobot):
-        desiredAngle = pyrosim.Set_Motor_For_Joint(
-            bodyIndex = currentrobot.robotId,  #robot,
+    def Set_Value(self, robot_id, desiredAngle):
+        pyrosim.Set_Motor_For_Joint(
+            bodyIndex = robot_id,
             jointName = self.jointName,
             controlMode = p.POSITION_CONTROL,
-            targetPosition = self.amplitude * desiredAngle,
-            maxForce = 80)
+            targetPosition = desiredAngle,
+            maxForce = c.MAX_JOINT_FORCE)
 

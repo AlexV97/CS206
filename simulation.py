@@ -25,9 +25,7 @@ class SIMULATION:
         self.robot = ROBOT(self.solutionID)
         
     def Run(self):
-        #print("simulation - Run()")
         for i in range(c.indexRange):
-           #print("simulation - i=", i)
            p.stepSimulation()
            self.robot.Sense(i)
            self.robot.Think()
