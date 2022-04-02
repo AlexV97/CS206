@@ -5,8 +5,8 @@ import time #?#
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
-        os.system("rm brain*.nndf")
-        os.system("rm fitness*.nndf")
+        os.system("rm brain*.nndf 2>nul ")
+        os.system("rm fitness*.nndf  2>nul ")
         self.parents = {}
         self.nextAvailableID = 0
 
