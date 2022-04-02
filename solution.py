@@ -30,10 +30,10 @@ class SOLUTION:
         pyrosim.Start_URDF("body.urdf")
         
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1] , size=[self.w,self.l,self.h])
-        pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
+        pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2]) 
         pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])
         pyrosim.Send_Cube(name="LeftLeg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
-        pyrosim.Send_Cube(name="RightLeg", pos=[0.5,0,0] , size=[1,0.2,0.2])
+        pyrosim.Send_Cube(name="RightLeg", pos=[0.5,0,0] , size=[1,0.1,0.2])
         
         pyrosim.Send_Cube(name="BackLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
         pyrosim.Send_Cube(name="FrontLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
@@ -113,7 +113,7 @@ class SOLUTION:
             time.sleep(0.01)
         self.fitness=float(f_read.read())
         f_read.close()
-        os.system("rm "+fitnessFileName)
+        os.system("rm "+fitnessFileName+ " 2>nul ")#new
         
     def Mutate(self):  #
         randomRow=random.randint(0,c.numSensorNeurons-1)
