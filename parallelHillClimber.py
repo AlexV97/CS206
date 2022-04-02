@@ -33,8 +33,8 @@ class PARALLEL_HILL_CLIMBER:
         
     def Select(self):
         for entry_key in range(0,c.populationSize):
-            #if ( self.parents[entry_key].fitness < self.children[entry_key].fitness ):
-            if ( self.parents[entry_key].fitness > self.children[entry_key].fitness ):
+            if ( self.parents[entry_key].fitness < self.children[entry_key].fitness ):
+            #if ( self.parents[entry_key].fitness > self.children[entry_key].fitness ):
                 self.parents[entry_key] = self.children[entry_key]
         
     def Evolve_For_One_Generation(self):
@@ -56,13 +56,21 @@ class PARALLEL_HILL_CLIMBER:
 
     def Show_Best(self):
         entry_key_lowest_parent = -1
-        lowest_fitness=999
-        for entry_key in range(0,c.populationSize):
-            if ( self.parents[entry_key].fitness < lowest_fitness ):
-                entry_key_lowest_parent = entry_key
-                lowest_fitness          = self.parents[entry_key].fitness
+        #lowest_fitness=999
+        #for entry_key in range(0,c.populationSize):
+        #    if ( self.parents[entry_key].fitness < lowest_fitness ):
+        #        entry_key_lowest_parent = entry_key
+        #        lowest_fitness          = self.parents[entry_key].fitness
+        #self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
         #print("*** phc Show_Best() Simulating lowest parent entry_key_lowest_parent= ", entry_key_lowest_parent, " - lowest_fitness= ", lowest_fitness)
-        self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
+        highest_fitness=-999
+        for entry_key in range(0,c.populationSize):
+            if ( self.parents[entry_key].fitness > highest_fitness ):
+                entry_key_highest_parent = entry_key
+                highest_fitness          = self.parents[entry_key].fitness
+                
+        print("*** phc Show_Best() Simulating highest parent entry_key_lowest_parent= ", entry_key_highest_parent, " - highest_fitness= ", highest_fitness)
+        self.parents[entry_key_highest_parent].Start_Simulation("GUI", 1)
                 
     
     def Evaluate(self, solutions):

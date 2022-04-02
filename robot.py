@@ -54,7 +54,7 @@ class ROBOT:
         #print("robot Get_Fitness() - starts ")
         stateOfLinkZero = p.getLinkState(self.robotId,0) # self.robot
         positionOfLinkZero = stateOfLinkZero[0]
-        xCoordinateOfLinkZero = -1*(positionOfLinkZero[0]) 
+        xCoordinateOfLinkZero = -1*(positionOfLinkZero[0])
 
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "

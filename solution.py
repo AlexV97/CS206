@@ -7,11 +7,8 @@ import os
 import constants as c
 class SOLUTION:
     def __init__(self, myID_arg):
-        #self.sensorNeurons=[0,1,2]
         self.sensorNeurons=[0,1,2,3,4,5,6,7,c.numMotorNeurons]
-        #self.motorNeurons=[3,4]
         self.motorNeurons=[c.numSensorNeurons,c.numSensorNeurons+1, c.numSensorNeurons+2, c.numSensorNeurons+3,c.numSensorNeurons+4,c.numSensorNeurons+5,c.numSensorNeurons+6,c.numSensorNeurons+7]
-        #self.weights = np.random.rand(3,2)
         self.weights = np.random.rand(c.numSensorNeurons,c.numMotorNeurons)
         self.weights = 2*(self.weights)-1
         self.l=1.0
@@ -55,13 +52,13 @@ class SOLUTION:
         
         
         pyrosim.Send_Joint(name = "BackLeg_BackLowerLeg" , parent= "BackLeg" , child = "BackLowerLeg" ,
-        type = "revolute", position = [0,-1,0], jointAxis = "1 0 0") #jointAxis = "0 0 1")
+        type = "revolute", position = [0,-1,0], jointAxis = "1 0 0")
         pyrosim.Send_Joint(name = "FrontLeg_FrontLowerLeg" , parent= "FrontLeg" , child = "FrontLowerLeg" ,
-        type = "revolute", position = [0,1,0], jointAxis = "1 0 0") #jointAxis = "0 0 1")
+        type = "revolute", position = [0,1,0], jointAxis = "1 0 0")
         pyrosim.Send_Joint(name = "LeftLeg_LeftLowerLeg" , parent= "LeftLeg" , child = "LeftLowerLeg" ,
-        type = "revolute", position = [-1,0,0], jointAxis = "0 1 0") #jointAxis = "0 0 1")
+        type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
         pyrosim.Send_Joint(name = "RightLeg_RightLowerLeg" , parent= "RightLeg" , child = "RightLowerLeg" ,
-        type = "revolute", position = [1,0,0], jointAxis = "0 1 0") #jointAxis = "0 0 1")
+        type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
    
 
         pyrosim.End()
@@ -129,12 +126,8 @@ class SOLUTION:
         os.system("rm "+fitnessFileName)
         
     def Mutate(self):  #
-        #print("solution.py - Mutate()")
-        randomRow=random.randint(0,2)       # 3 rows
-        randomColumn=random.randint(0,1)    # 2 columns
-        ##self.weights = np.random.rand(c.numSensorNeurons,c.numMotorNeurons)
-        #randomRow=random.randint(0,c.numSensorNeurons)       # 3 rows
-        #randomColumn=random.randint(0,c.numMotorNeurons)    # 2 columns
+        randomRow=random.randint(0,c.numSensorNeurons-1)       # 3 rows
+        randomColumn=random.randint(0,c.numMotorNeurons-1)    # 2 columns
         my_random=random.random()
         self.weights[randomRow,randomColumn] = (2*(my_random)-1)
     

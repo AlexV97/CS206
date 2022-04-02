@@ -11,14 +11,14 @@ class MOTOR:
 
         self.Prepare_To_Act()
         
+        
     def Prepare_To_Act(self):
         self.amplitude = c.amplitude
         self.offset    = c.phaseOffset
-        #if ( (self.jointName == "Torso_BackLeg") or (self.jointName == "Torso_FrontLeg") ):
-        #    self.frequency = c.frequency/2
-        #else:
-        #    self.frequency = c.frequency
-        self.frequency = c.frequency
+        if ( (self.jointName == "Torso_BackLeg") or (self.jointName == "Torso_FrontLeg") ):
+            self.frequency = c.frequency/2
+        else:
+            self.frequency = c.frequency
 
         for i in range(c.indexRange):
             self.motorValues[i] = numpy.sin(math.pi/4)*numpy.sin(((i*2*self.frequency*math.pi/(c.indexRange))+self.offset))
