@@ -5,6 +5,7 @@ import pyrosim.pyrosim as pyrosim
 import random
 import os
 import constants as c
+
 class SOLUTION:
     def __init__(self, myID_arg):
         #print("solution - __init__ ")

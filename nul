@@ -1,1 +1,7 @@
 pybullet build time: Jan 18 2022 16:07:40
+Traceback (most recent call last):
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/simulate.py", line 29, in <module>
+    simulation.Run()
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/simulation.py", line 31, in Run
+    p.stepSimulation()
+KeyboardInterrupt

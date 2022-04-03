@@ -61,7 +61,12 @@ class ROBOT:
     def Get_Fitness(self):
         #print("robot Get_Fitness() - starts ")
 
-        xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
+        xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  #
+        #basePositionAndOrientation = p.getBasePositionAndOrientation(self.robot)
+        #basePosition = basePositionAndOrientation[0]
+        #xPosition = basePosition[0]
+        #xCoordinateOfLinkZero = p.getLinkState(getBasePositionAndOrientation)[0][0]  #
+                
         #print("robot Get_Fitness() - xCoordinateOfLinkZero= ", xCoordinateOfLinkZero)
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
