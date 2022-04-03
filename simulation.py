@@ -14,7 +14,7 @@ class SIMULATION:
     def __init__(self, directOrGUI, solutionID):
         self.directOrGUI = directOrGUI
         self.solutionID = solutionID
-        if ( 0 == 1 ): #( self.directOrGUI == "DIRECT" ):
+        if ( self.directOrGUI == "DIRECT" ):
             self.physicsClient = p.connect(p.DIRECT)
         else:
             self.physicsClient = p.connect(p.GUI)
@@ -39,7 +39,7 @@ class SIMULATION:
                 time.sleep(1/(2*480)); #time.sleep(1/480); #
   
         self.robot.Save_Values_Sensors()
-        print("simulation Run() robot.Save_Values_Sensors()")
+        #print("simulation Run() robot.Save_Values_Sensors()")
     
     def Get_Fitness(self):
         print("simulation Get_Fitness() Starts - self.directOrGUI = ", self.directOrGUI , " - = self.solutionID", self.solutionID)

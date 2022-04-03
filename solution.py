@@ -7,7 +7,7 @@ import os
 import constants as c
 class SOLUTION:
     def __init__(self, myID_arg):
-        print("solution - __init__ ")
+        #print("solution - __init__ ")
         self.sensorNeurons=[0,1,2,3,4,5,6,7,8,9,10,11,c.numSensorNeurons-1]
         self.motorNeurons=[c.numSensorNeurons, c.numSensorNeurons+1, c.numSensorNeurons+2,c.numSensorNeurons+3, c.numSensorNeurons+4,c.numSensorNeurons+5,c.numSensorNeurons+6,c.numSensorNeurons+7, c.numSensorNeurons+8,c.numSensorNeurons+9,c.numSensorNeurons+10,c.numSensorNeurons+11]
         self.weights = 2*(np.random.rand(c.numSensorNeurons,c.numMotorNeurons))-1
@@ -21,13 +21,13 @@ class SOLUTION:
         self.fitness = None
 
     def Create_World(self):
-        print("solution - Create_World() Start ")
+        #print("solution - Create_World() Start ")
         pyrosim.Start_SDF("world.sdf")
         pyrosim.Send_Cube(name="Box", pos=[(self.box1_x-2.0),(self.box1_y+2.0),self.box1_z] , size=[self.w,self.l,self.h])
         pyrosim.End()
 
     def Generate_Body(self):
-        print("solution - Generate_Body() Start ")
+        #print("solution - Generate_Body() Start ")
         pyrosim.Start_URDF("body.urdf")
         
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1.5] , size=[self.w,self.l,self.h])
@@ -65,15 +65,15 @@ class SOLUTION:
         type = "revolute", position = [0,1,0], jointAxis = "1 0 0")
         pyrosim.Send_Joint(name = "LeftLeg_LeftLowerLeg" , parent= "LeftLeg" , child = "LeftLowerLeg" ,
         type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
-        pyrosim.Send_Joint(name = "LeftLeg_SecondLeftLowerLeg" , parent= "SecondLeftLeg" , child = "SecondLeftLowerLeg" ,
+        pyrosim.Send_Joint(name = "SecondLeftLeg_SecondLeftLowerLeg" , parent= "SecondLeftLeg" , child = "SecondLeftLowerLeg" ,
         type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
         pyrosim.Send_Joint(name = "RightLeg_RightLowerLeg" , parent= "RightLeg" , child = "RightLowerLeg" ,
         type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
-        pyrosim.Send_Joint(name = "RightLeg_SecondRightLowerLeg" , parent= "SecondRightLeg" , child = "SecondRightLowerLeg" ,
+        pyrosim.Send_Joint(name = "SecondRightLeg_SecondRightLowerLeg" , parent= "SecondRightLeg" , child = "SecondRightLowerLeg" ,
         type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
    
         pyrosim.End()
-        print("solution - Generate_Body() Completed ")
+        #print("solution - Generate_Body() Completed ")
 
     def Generate_Brain(self): #
         brain_file_name = "brain"+str(self.myID)+".nndf"
@@ -113,7 +113,7 @@ class SOLUTION:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn , weight = self.weights[currentRow][currentColumn-c.numSensorNeurons-1]) #aligns weights with neuron values
         
         pyrosim.End()
-        print("solution - Generate_Brain() Completed ")
+        #print("solution - Generate_Brain() Completed ")
    
     def Start_Simulation(self, directOrGUI, lastSimul):
         print("solution - Start_Simulation() Start ID= ", str(self.myID), " - directOrGUI= ", directOrGUI)
@@ -121,11 +121,11 @@ class SOLUTION:
         self.Generate_Body()
         self.Generate_Brain()
 
-        #if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
-        #    os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
-        #else:
-        #    os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul &")
-        os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) )
+        if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
+        else:
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul &")
+        #dbg# os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) )
         print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
 
 

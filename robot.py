@@ -41,14 +41,16 @@ class ROBOT:
                                             phaseOffset=c.phaseOffset)
 
     def Act(self,i):
+        #print("robot.py Act() self.motors= ", self.motors )
         for neuronName in self.nn.Get_Neuron_Names():
             if (self.nn.Is_Motor_Neuron(neuronName)):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
+                #print("robot.py Act() jointName= ", jointName, " - neuronName=", neuronName)
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                 self.motors[jointName].Set_Value(self.robotId, (desiredAngle*c.motorJointRange))
         
     def Save_Values_Sensors(self):
-        print("robot Save_Values_Sensors() - sensors.values()=", self.sensors.values())
+        #print("robot Save_Values_Sensors() - sensors.values()=", self.sensors.values())
         for sensor in self.sensors.values():
             sensor.Save_Values()
             
@@ -57,13 +59,13 @@ class ROBOT:
         self.nn.Print()  # comment out when not in debug
         
     def Get_Fitness(self):
-        print("robot Get_Fitness() - starts ")
+        #print("robot Get_Fitness() - starts ")
 
         xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
         #print("robot Get_Fitness() - xCoordinateOfLinkZero= ", xCoordinateOfLinkZero)
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
-        #os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
-        os_command_line = "cp " + "tmp"+str(self.solutionId)+".txt "
+        os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
+        #os_command_line = "cp " + "tmp"+str(self.solutionId)+".txt "
         os_command_line += " fitness"+str(self.solutionId)+".txt "
         os.system(os_command_line)
 
