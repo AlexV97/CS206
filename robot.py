@@ -48,6 +48,7 @@ class ROBOT:
                 self.motors[jointName].Set_Value(self.robotId, (desiredAngle*c.motorJointRange))
         
     def Save_Values_Sensors(self):
+        print("robot Save_Values_Sensors() - sensors.values()=", self.sensors.values())
         for sensor in self.sensors.values():
             sensor.Save_Values()
             
@@ -56,13 +57,13 @@ class ROBOT:
         self.nn.Print()  # comment out when not in debug
         
     def Get_Fitness(self):
-        #print("robot Get_Fitness() - starts ")
+        print("robot Get_Fitness() - starts ")
 
         xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
         #print("robot Get_Fitness() - xCoordinateOfLinkZero= ", xCoordinateOfLinkZero)
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
-        os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
-        #os_command_line = "cp " + "tmp"+str(self.solutionId)+".txt "
+        #os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
+        os_command_line = "cp " + "tmp"+str(self.solutionId)+".txt "
         os_command_line += " fitness"+str(self.solutionId)+".txt "
         os.system(os_command_line)
 
@@ -70,4 +71,4 @@ class ROBOT:
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
 
-        #print("robot Get_Fitness() - DONE - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
+        print("robot Get_Fitness() - DONE - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
