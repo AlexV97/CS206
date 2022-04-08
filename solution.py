@@ -62,7 +62,7 @@ class SOLUTION:
         pyrosim.End()
 
 
-    def Generate_Brain(self): #
+    def Generate_Brain(self): 
         brain_file_name = "brain"+str(self.myID)+".nndf"
         pyrosim.Start_NeuralNetwork("brain"+str(self.myID)+".nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
