@@ -22,7 +22,7 @@ class SOLUTION:
     def Create_World(self):
         #print("solution - Create_World() Start ")
         pyrosim.Start_SDF("world.sdf")
-        pyrosim.Send_Cube(name="Box", pos=[(self.box1_x-2.0),(self.box1_y+2.0),self.box1_z] , size=[self.w,self.l,self.h])
+        #pyrosim.Send_Cube(name="Box", pos=[(self.box1_x-2.0),(self.box1_y+2.0),self.box1_z] , size=[self.w,self.l,self.h])
         pyrosim.End()
 
     def Generate_Body(self):
