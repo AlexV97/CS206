@@ -41,7 +41,8 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for entry_key in range(0,c.populationSize):
-            if ( self.children[entry_key].fitness < self.parents[entry_key].fitness ):
+            #if ( self.children[entry_key].fitness < self.parents[entry_key].fitness ):
+            if ( self.children[entry_key].fitness > self.parents[entry_key].fitness ):
                 self.parents[entry_key] = self.children[entry_key]
         
 #    def Print(self):
@@ -53,16 +54,24 @@ class PARALLEL_HILL_CLIMBER:
 
     def Show_Best(self):
         #print("parallelHillClimber - Show_Best() c.populationSize= ", c.populationSize)
-        entry_key_lowest_parent = -1
-
-        lowest_fitness=999
+#        entry_key_lowest_parent = -1
+#        lowest_fitness=999
+#        for entry_key in range(0,c.populationSize):
+#            print("parallelHillClimber - Show_Best() entry_key= ", entry_key, " - self.parents[entry_key].fitness= ", #self.parents[entry_key].fitness)
+#            if ( self.parents[entry_key].fitness < lowest_fitness ):
+#                entry_key_lowest_parent = entry_key
+#                lowest_fitness          = self.parents[entry_key].fitness
+###
+        entry_key_best_parent = -1
+        best_fitness=-999
         for entry_key in range(0,c.populationSize):
-            #print("parallelHillClimber - Show_Best() entry_key= ", entry_key, " - self.parents[entry_key].fitness= ", self.parents[entry_key].fitness)
-            if ( self.parents[entry_key].fitness < lowest_fitness ):
-                entry_key_lowest_parent = entry_key
-                lowest_fitness          = self.parents[entry_key].fitness
-                
-        self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
+            print("parallelHillClimber - Show_Best() entry_key= ", entry_key, " - self.parents[entry_key].fitness= ", self.parents[entry_key].fitness)
+            if ( self.parents[entry_key].fitness > best_fitness ):
+                entry_key_best_parent = entry_key
+                best_fitness          = self.parents[entry_key].fitness
+###
+        print("parallelHillClimber - Show_Best() Best Key = ", entry_key_best_parent, " Best Fitness = ", best_fitness)
+        self.parents[entry_key_best_parent].Start_Simulation("GUI", 1)
                 
     
     def Evaluate(self, solutions):

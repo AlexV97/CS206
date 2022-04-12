@@ -59,6 +59,9 @@ class ROBOT:
         #print("robot Get_Fitness() - starts ")
 
         xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
+        #CoordinateOfLinkZero1 = p.getLinkState(self.robotId, 1)[0][0]  # x_coord_of_link_...
+        #CoordinateOfLinkZero2 = p.getLinkState(self.robotId, 2)[0][0]  # x_coord_of_link_...
+        zCoordinateOfLinkZero = p.getLinkState(self.robotId, 2)[0][0]  # x_coord_of_link_...
         #print("robot Get_Fitness() - xCoordinateOfLinkZero= ", xCoordinateOfLinkZero)
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
@@ -67,7 +70,9 @@ class ROBOT:
         os.system(os_command_line)
 
         f_write = open(fitnessFileName, "w")
-        f_write.write(str(xCoordinateOfLinkZero))
+#        f_write.write(str(xCoordinateOfLinkZero))
+        f_write.write(str(zCoordinateOfLinkZero))
         f_write.close()
 
-        #print("robot Get_Fitness() - DONE - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
+#        print("robot Get_Fitness() - DONE - solutionId= ", str(self.solutionId),"xCoordinateOfLinkZero= ", xCoordinateOfLinkZero, #"CoordinateOfLinkZero1= ", CoordinateOfLinkZero1,"CoordinateOfLinkZero2= ", CoordinateOfLinkZero2)
+        print("robot Get_Fitness() - DONE - solutionId= ", str(self.solutionId),"xCoordinateOfLinkZero= ", xCoordinateOfLinkZero, "zCoordinateOfLinkZero= ", zCoordinateOfLinkZero)

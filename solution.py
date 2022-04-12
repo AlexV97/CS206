@@ -30,7 +30,7 @@ class SOLUTION:
         pyrosim.Start_URDF("body.urdf")
         
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1] , size=[self.w,self.l,self.h])
-        pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2]) 
+        pyrosim.Send_Cube(name="BackLeg", pos=[0,-0.5,0] , size=[0.2,1,0.2])
         pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[0.2,1,0.2])
         pyrosim.Send_Cube(name="LeftLeg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
         pyrosim.Send_Cube(name="RightLeg", pos=[0.5,0,0] , size=[1,0.1,0.2])
@@ -48,7 +48,6 @@ class SOLUTION:
         type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")
         pyrosim.Send_Joint(name = "Torso_RightLeg" , parent= "Torso" , child = "RightLeg" ,
         type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
-        
         
         pyrosim.Send_Joint(name = "BackLeg_BackLowerLeg" , parent= "BackLeg" , child = "BackLowerLeg" ,
         type = "revolute", position = [0,-1,0], jointAxis = "1 0 0")
@@ -95,12 +94,11 @@ class SOLUTION:
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
-        if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
-            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
-        else:
+        if ( lastSimul != 1):  # for last simulation, do not let command line continuing/waiting
             os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul &")
-
-        #print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
+        else:
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
+            print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
 
 
     def Wait_For_Simulation_To_End(self, directOrGUI):

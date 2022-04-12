@@ -10,6 +10,6 @@ numberOfGenerations = 10
 populationSize      = 10
 numSensorNeurons    = 9    #4 #3
 numMotorNeurons     = 8     #3 #2
-motorJointRange     = 0.2 # 0.4 #0.33 #
-MAX_JOINT_FORCE     = 80
+motorJointRange     = 0.3#0.2 # 0.4 #0.33 #
+MAX_JOINT_FORCE     = 100 #80
  
