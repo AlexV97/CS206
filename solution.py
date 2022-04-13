@@ -111,7 +111,7 @@ class SOLUTION:
             time.sleep(0.01)
         self.fitness=float(f_read.read())
         f_read.close()
-        os.system("rm "+fitnessFileName+ " 2>nul ")#new
+        os.system("rm "+fitnessFileName)#new
         
     def Mutate(self):  #
         randomRow=random.randint(0,c.numSensorNeurons-1)
