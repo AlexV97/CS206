@@ -25,13 +25,28 @@ class SIMULATION:
         self.robot = ROBOT(self.solutionID)
         
     def Run(self):
-        for i in range(c.indexRange):
-           p.stepSimulation()
-           self.robot.Sense(i)
-           self.robot.Think()
-           self.robot.Act(i)
-           if ( self.directOrGUI == "GUI"):
-                time.sleep(1/(2*480)); #time.sleep(1/480); #
+#        for i in range(c.indexRange):
+#           p.stepSimulation()
+#           self.robot.Sense(i)
+#           self.robot.Think()
+#           self.robot.Act(i)
+#           if ( self.directOrGUI == "GUI"):
+#                #time.sleep(1/(2*c.marchingFreq)); #time.sleep(1/480); #
+#                time.sleep(1/(c.marchingFreq)); #time.sleep(1/480); #
+        if ( self.directOrGUI != "GUI"):
+            for i in range(c.indexRange):
+                p.stepSimulation()
+                self.robot.Sense(i)
+                self.robot.Think()
+                self.robot.Act(i)
+
+        else:
+             for i in range(c.indexRange_GUI):
+                p.stepSimulation()
+                self.robot.Sense(i)
+                self.robot.Think()
+                self.robot.Act(i)
+                time.sleep(1/(c.marchingFreq)); #time.sleep(1/480); #
         
         self.robot.Save_Values_Sensors()
     

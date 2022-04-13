@@ -96,9 +96,10 @@ class SOLUTION:
         self.Generate_Body()
         self.Generate_Brain()
         if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
-            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
+            #os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID))
         else:
-            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul &")
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID))
 
         #print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
 
