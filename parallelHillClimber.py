@@ -5,7 +5,7 @@ import time
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
-        os.system("rm brain*.nndf 2>nul ")
+        os.system("rm brain*.nndf    2>nul ")
         os.system("rm fitness*.nndf  2>nul ")
         self.parents = {}
         self.nextAvailableID = 0
@@ -61,7 +61,8 @@ class PARALLEL_HILL_CLIMBER:
             if ( self.parents[entry_key].fitness < lowest_fitness ):
                 entry_key_lowest_parent = entry_key
                 lowest_fitness          = self.parents[entry_key].fitness
-                
+            
+        print("parallelHillClimber - Show_Best() key= ", entry_key_lowest_parent, " - Lowest fitness= ", lowest_fitness)
         self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
                 
     

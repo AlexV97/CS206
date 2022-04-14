@@ -48,9 +48,29 @@ class SENSOR:
 #                self.values[i] = numpy.sin(i*c.marchingFreq+2*c.phaseOffset/4)+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
 #            elif ( ( self.linkName == 'FrontLowerLeg') ):
 #                self.values[i] = numpy.sin(i*c.marchingFreq+4*c.phaseOffset/4)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+### Prof recommended lower and upper of the legs
+###        if ( self.linkName != 'NoneType'):
+###            if ( ( self.linkName == 'RightLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'RightLowerLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'LeftLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+3*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'LeftLowerLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+3*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'BackLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+2*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'BackLowerLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+2*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'FrontLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+4*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            elif ( ( self.linkName == 'FrontLowerLeg') ):
+###                self.values[i] = numpy.sin(i*c.marchingFreq+4*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+###            else:
+###                self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
         if ( self.linkName != 'NoneType'):
             if ( ( self.linkName == 'RightLowerLeg') ):
-                self.values[i] = numpy.sin(i*c.marchingFreq)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+                self.values[i] = numpy.sin(i*c.marchingFreq+1*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
             elif ( ( self.linkName == 'LeftLowerLeg') ):
                 self.values[i] = numpy.sin(i*c.marchingFreq+3*c.phaseOffset)#+pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
             elif ( ( self.linkName == 'BackLowerLeg') ):
