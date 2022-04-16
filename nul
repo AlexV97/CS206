@@ -2,12 +2,14 @@ pybullet build time: Jan 18 2022 16:07:40
 Traceback (most recent call last):
   File "/Users/Alexandre_1/Desktop/CS206/cs206/simulate.py", line 27, in <module>
     simulation.Run()
-  File "/Users/Alexandre_1/Desktop/CS206/cs206/simulation.py", line 46, in Run
-    self.robot.Sense(i)
-  File "/Users/Alexandre_1/Desktop/CS206/cs206/robot.py", line 33, in Sense
-    sensor.Get_Value(i)
-  File "/Users/Alexandre_1/Desktop/CS206/cs206/sensor.py", line 81, in Get_Value
-    self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/simulation.py", line 47, in Run
+    self.robot.Think()
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/robot.py", line 55, in Think
+    self.nn.Update()
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/pyrosim/neuralNetwork.py", line 33, in Update
+    self.neurons[neuronName].Update_Sensor_Neuron()
+  File "/Users/Alexandre_1/Desktop/CS206/cs206/pyrosim/neuron.py", line 62, in Update_Sensor_Neuron
+    self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
   File "/Users/Alexandre_1/Desktop/CS206/cs206/pyrosim/pyrosim.py", line 53, in Get_Touch_Sensor_Value_For_Link
     for pt in pts:
 TypeError: 'NoneType' object is not iterable

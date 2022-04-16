@@ -46,7 +46,7 @@ class SIMULATION:
                 self.robot.Sense(i)
                 self.robot.Think()
                 self.robot.Act(i)
-                time.sleep(1/(2*480)); #time.sleep(1/480); #time.sleep(1/(c.marchingFreq)); #
+                time.sleep(1/(120)); #time.sleep(1/480); #time.sleep(1/(c.marchingFreq)); #time.sleep(1/(c.marchingFreq)); #
         
         self.robot.Save_Values_Sensors()
     

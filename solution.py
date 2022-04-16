@@ -91,15 +91,18 @@ class SOLUTION:
         pyrosim.End()
    
     def Start_Simulation(self, directOrGUI, lastSimul):
-        #print("solution - Start_Simulation() Start ID= ", str(self.myID), " - directOrGUI= ", directOrGUI)
+        #print("solution - Start_Simulation() Start ID= ", str(self.myID), " - directOrGUI= ", directOrGUI, " - lastSimul= ", lastSimul )
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()
         if ( lastSimul == 1):  # for last simulation, do not let command line continuing/waiting
             os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
             #os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID))
+            #time.sleep(180)
+            os.system("sleep 180 ")
+            #print("solution - after last lastSimul " )
         else:
-            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " 2>nul ")
+            os.system("python3 simulate.py " + directOrGUI + " " + str(self.myID) + " & 2>nul ")
 
         #print("solution - Start_Simulation() Completed - Start ID= ", str(self.myID), " - fitness= ", str(self.fitness))
 
