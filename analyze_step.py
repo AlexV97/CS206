@@ -53,7 +53,25 @@ matplotlib.pyplot.plot((RightLowerLegsensorValues>0.999)*4, label='RightLowerLeg
 #matplotlib.pyplot.plot((FrontLowerLegsensorValues), label='FrontLowerLegTouch', ls='', marker="o")
 #matplotlib.pyplot.plot((LeftLowerLegsensorValues), label='LeftLowerLegsensorTouch', ls='', marker="o")
 #matplotlib.pyplot.plot((RightLowerLegsensorValues), label='RightLowerLegsensorTouch', ls='', marker="o")
+
+# Plot
 matplotlib.pyplot.plot()
+
+# Adjusting limits to ignore 0s of when the legs are not touching anything
 matplotlib.pyplot.ylim(0.5,4.5)
+
+# Adding title
+matplotlib.pyplot.title("Project A: Marching Quadrupede \n LowerLegsSensors Touching Ground")
+
+# Adding legend
 matplotlib.pyplot.legend()
+
+# Adding Axis Labels
+matplotlib.pyplot.xlabel("Foot Steps per Leg for each iteration i")
+matplotlib.pyplot.ylabel("Separating Lower Leg Touching per line")
+
+# Auto adjust layout
+matplotlib.pyplot.tight_layout()
+
+# Display
 matplotlib.pyplot.show()
