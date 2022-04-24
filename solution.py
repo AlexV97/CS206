@@ -18,6 +18,7 @@ class SOLUTION:
         self.box1_z=(self.h)/2
         self.myID = myID_arg
         self.fitness = 0
+        self.myCurrentGeneration = 0
 
     def Create_World(self):
         #print("solution - Create_World() Start ")
