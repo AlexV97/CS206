@@ -65,10 +65,8 @@ class ROBOT:
         #print("robot Get_Fitness() - starts ")
 
         xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
-        #print("robot Get_Fitness() - xCoordinateOfLinkZero= ", xCoordinateOfLinkZero)
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
-        #os_command_line = "cp " + "tmp"+str(self.solutionId)+".txt "
         os_command_line += " fitness"+str(self.solutionId)+".txt "
         os.system(os_command_line)
 

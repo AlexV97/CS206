@@ -112,7 +112,7 @@ class SOLUTION:
         pyrosim.End()
    
     def Start_Simulation(self, directOrGUI, lastSimul):
-        print("solution - Start_Simulation() Start ID= ", str(self.myID), " - directOrGUI= ", directOrGUI, " - lastSimul= ", lastSimul )
+        #print("solution - Start_Simulation() Start ID= ", str(self.myID), " - directOrGUI= ", directOrGUI, " - lastSimul= ", lastSimul )
         self.Create_World()
         self.Generate_Body()
         self.Generate_Brain()

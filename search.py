@@ -8,7 +8,7 @@ phc = PARALLEL_HILL_CLIMBER()
 
 #print("search.py just before phc.Evolve()")
 phc.Evolve()
-print("search.py just before phc.Show_Best()")
+#print("search.py just before phc.Show_Best()")
 phc.Show_Best()
 
 #os.system("date ")

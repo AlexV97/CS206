@@ -38,25 +38,12 @@ xor_leftLower_rightLower = numpy.logical_xor(xor_leftLower_secondleftLower,xor_r
 
 xor_allLegs = numpy.logical_xor(xor_backLower_frontLower,xor_leftLower_rightLower)
 
-#i_BackLowerLeg_touch  = BackLowerLeg_touch * 1
-#i_FrontLowerLeg_touch = FrontLowerLeg_touch * 2
-#i_LeftLowerLeg_touch  = LeftLowerLeg_touch * 4
-#i_RightLowerLeg_touch = RightLowerLeg_touch * 8
-#i_TotalAllLegs = i_BackLowerLeg_touch + i_FrontLowerLeg_touch + i_LeftLowerLeg_touch + i_RightLowerLeg_touch
-#print(" analyze i_TotalAllLegs=", i_TotalAllLegs)
-
-
 matplotlib.pyplot.plot((BackLowerLegsensorValues>0.999), label='BackLowerLegTouch', ls='', marker="o")
 matplotlib.pyplot.plot((FrontLowerLegsensorValues>0.999)*2, label='FrontLowerLegTouch', ls='', marker="o")
 matplotlib.pyplot.plot((LeftLowerLegsensorValues>0.999)*3, label='LeftLowerLegsensorTouch', ls='', marker="o")
 matplotlib.pyplot.plot((SecondLeftLowerLegsensorValues>0.999)*4, label='SecondLeftLowerLegsensorTouch', ls='', marker="o")
 matplotlib.pyplot.plot((RightLowerLegsensorValues>0.999)*5, label='RightLowerLegsensorTouch', ls='', marker="o")
 matplotlib.pyplot.plot((SecondRightLowerLegsensorValues>0.999)*6, label='SecondRightLowerLegsensorTouch', ls='', marker="o")
-
-#matplotlib.pyplot.plot((BackLowerLegsensorValues), label='BackLowerLegTouch', ls='', marker="o")
-#matplotlib.pyplot.plot((FrontLowerLegsensorValues), label='FrontLowerLegTouch', ls='', marker="o")
-#matplotlib.pyplot.plot((LeftLowerLegsensorValues), label='LeftLowerLegsensorTouch', ls='', marker="o")
-#matplotlib.pyplot.plot((RightLowerLegsensorValues), label='RightLowerLegsensorTouch', ls='', marker="o")
 
 # Plot
 matplotlib.pyplot.plot()
@@ -65,10 +52,10 @@ matplotlib.pyplot.plot()
 matplotlib.pyplot.ylim(0.5,6.5)
 
 # Adding title
-matplotlib.pyplot.title("Project A: Marching Hexapod \n LowerLegsSensors Touching Ground")
+matplotlib.pyplot.title("Project B: Marching Hexapod \n LowerLegsSensors Touching Ground")
 
 # Adding legend
-matplotlib.pyplot.legend()
+matplotlib.pyplot.legend(ncol=3, fontsize='x-small')
 
 # Adding Axis Labels
 matplotlib.pyplot.xlabel("Foot Steps per Leg for each iteration i")
