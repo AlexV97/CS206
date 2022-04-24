@@ -26,16 +26,16 @@ matplotlib.pyplot.plot(RightLowerLegsensorValues, label='RightLowerLegValues', l
 matplotlib.pyplot.legend()
 
 BackLowerLeg_touch = numpy.greater_equal(BackLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",BackLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",BackLowerLeg_touch )
 
 FrontLowerLeg_touch = numpy.greater_equal(FrontLowerLegsensorValues, ones)
-print("analyze FrontLowerLeg_touch= ",FrontLowerLeg_touch )
+#print("analyze FrontLowerLeg_touch= ",FrontLowerLeg_touch )
 
 LeftLowerLeg_touch = numpy.greater_equal(LeftLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",LeftLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",LeftLowerLeg_touch )
 
 RightLowerLeg_touch = numpy.greater_equal(RightLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",RightLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",RightLowerLeg_touch )
 
 xor_backLower_frontLower = numpy.logical_xor(BackLowerLeg_touch,FrontLowerLeg_touch)
 xor_leftLower_rightLower = numpy.logical_xor(LeftLowerLeg_touch,RightLowerLeg_touch)

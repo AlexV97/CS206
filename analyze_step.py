@@ -19,16 +19,16 @@ with open('../data_quadruped/RightLowerLegsensor.npy','rb') as RightLowerLegsens
      RightLowerLegsensorValues = numpy.load(RightLowerLegsensor_input_file)
 
 BackLowerLeg_touch = numpy.greater_equal(BackLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",BackLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",BackLowerLeg_touch )
 
 FrontLowerLeg_touch = numpy.greater_equal(FrontLowerLegsensorValues, ones)
-print("analyze FrontLowerLeg_touch= ",FrontLowerLeg_touch )
+#print("analyze FrontLowerLeg_touch= ",FrontLowerLeg_touch )
 
 LeftLowerLeg_touch = numpy.greater_equal(LeftLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",LeftLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",LeftLowerLeg_touch )
 
 RightLowerLeg_touch = numpy.greater_equal(RightLowerLegsensorValues, ones)
-print("analyze BackLowerLeg_touch= ",RightLowerLeg_touch )
+#print("analyze BackLowerLeg_touch= ",RightLowerLeg_touch )
 
 xor_backLower_frontLower = numpy.logical_xor(BackLowerLeg_touch,FrontLowerLeg_touch)
 xor_leftLower_rightLower = numpy.logical_xor(LeftLowerLeg_touch,RightLowerLeg_touch)
@@ -44,10 +44,10 @@ xor_allLegs = numpy.logical_xor(xor_backLower_frontLower,xor_leftLower_rightLowe
 #print(" analyze i_TotalAllLegs=", i_TotalAllLegs)
 
 
-matplotlib.pyplot.plot((BackLowerLegsensorValues>1), label='BackLowerLegTouch', ls='', marker="o")
-matplotlib.pyplot.plot((FrontLowerLegsensorValues>1)*2, label='FrontLowerLegTouch', ls='', marker="o")
-matplotlib.pyplot.plot((LeftLowerLegsensorValues>1)*3, label='LeftLowerLegsensorTouch', ls='', marker="o")
-matplotlib.pyplot.plot((RightLowerLegsensorValues>1)*4, label='RightLowerLegsensorTouch', ls='', marker="o")
+matplotlib.pyplot.plot((BackLowerLegsensorValues>0.999), label='BackLowerLegTouch', ls='', marker="o")
+matplotlib.pyplot.plot((FrontLowerLegsensorValues>0.999)*2, label='FrontLowerLegTouch', ls='', marker="o")
+matplotlib.pyplot.plot((LeftLowerLegsensorValues>0.999)*3, label='LeftLowerLegsensorTouch', ls='', marker="o")
+matplotlib.pyplot.plot((RightLowerLegsensorValues>0.999)*4, label='RightLowerLegsensorTouch', ls='', marker="o")
 
 #matplotlib.pyplot.plot((BackLowerLegsensorValues), label='BackLowerLegTouch', ls='', marker="o")
 #matplotlib.pyplot.plot((FrontLowerLegsensorValues), label='FrontLowerLegTouch', ls='', marker="o")
