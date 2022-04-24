@@ -1,8 +1,8 @@
 import math
 
 # number of steps in simulation
-indexRange          = 8000#8000#7000#400000#30000 #8000
-indexRange_GUI      = 2000000000#80000000#400000#30000 #8000
+indexRange          = 3000#8000#7000#400000#30000 #8000
+indexRange_GUI      = 3000#2000000000#80000000#400000#30000 #8000
 # if common parameters for both legs
 amplitude           = (math.pi)/4
 frequency           = 15# 20 # #5#10#2

@@ -9,6 +9,7 @@ class PARALLEL_HILL_CLIMBER:
         os.system("rm fitness*.nndf  2>nul ")
         self.parents = {}
         self.nextAvailableID = 0
+        self.currentGeneration = 0
 
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION(self.nextAvailableID)
@@ -18,6 +19,7 @@ class PARALLEL_HILL_CLIMBER:
         #print("parallelHillClimber - Evolve()")
         self.Evaluate(self.parents)
         for gen in range( c.numberOfGenerations):
+            self.currentGeneration = gen
             self.Evolve_For_One_Generation()
           
     def Evolve_For_One_Generation(self):

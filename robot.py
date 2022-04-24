@@ -41,15 +41,21 @@ class ROBOT:
                                             phaseOffset=c.phaseOffset)
 
     def Act(self,i):
+        #print(" robot Act() Started i= ", i)
         for neuronName in self.nn.Get_Neuron_Names():
             if (self.nn.Is_Motor_Neuron(neuronName)):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                 self.motors[jointName].Set_Value(self.robotId, (desiredAngle*c.motorJointRange))
+        #print(" robot Act() Ended i= ", i)
         
     def Save_Values_Sensors(self):
         for sensor in self.sensors.values():
             sensor.Save_Values()
+
+    def Save_Best_Values_Sensors(self):
+        for sensor in self.sensors.values():
+            sensor.Save_Best_Values()
             
     def Think(self):
         self.nn.Update()
