@@ -19,7 +19,7 @@ class ROBOT:
         self.robotId = p.loadURDF("body.urdf")
         pyrosim.Prepare_To_Simulate(self.robotId)
 
-        os.system("rm "+brain_file)
+        #os.system("rm "+brain_file)
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
 
@@ -41,13 +41,11 @@ class ROBOT:
                                             phaseOffset=c.phaseOffset)
 
     def Act(self,i):
-        #print(" robot Act() Started i= ", i)
         for neuronName in self.nn.Get_Neuron_Names():
             if (self.nn.Is_Motor_Neuron(neuronName)):
                 jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                 self.motors[jointName].Set_Value(self.robotId, (desiredAngle*c.motorJointRange))
-        #print(" robot Act() Ended i= ", i)
         
     def Save_Values_Sensors(self):
         for sensor in self.sensors.values():
@@ -62,16 +60,19 @@ class ROBOT:
         self.nn.Print()  # comment out when not in debug
         
     def Get_Fitness(self):
-        #print("robot Get_Fitness() - starts ")
-
         xCoordinateOfLinkZero = p.getLinkState(self.robotId, 0)[0][0]  # x_coord_of_link_0
+#        tmpFileName = "tmp"+str(self.solutionId)+".txt"
+#        if ( not os.path.exists(tmpFileName) ) :
+#            print("Warning: robot Get_Fitness() tmpFileName ", tmpFileName, " was not existing yet")
+#        os_command_line = "ls -al *.txt"
+
         fitnessFileName = "tmp"+str(self.solutionId)+".txt"
         os_command_line = "mv " + "tmp"+str(self.solutionId)+".txt "
         os_command_line += " fitness"+str(self.solutionId)+".txt "
-        os.system(os_command_line)
 
         f_write = open(fitnessFileName, "w")
         f_write.write(str(xCoordinateOfLinkZero))
         f_write.close()
 
-        #print("robot Get_Fitness() - DONE - xCoordinateOfLinkZero=", xCoordinateOfLinkZero)
+        os.system(os_command_line)
+#        print("\nrobot Get_Fitness() - DONE solutionId= ", self.solutionId , "xCoordinateOfLinkZero=", xCoordinateOfLinkZero)

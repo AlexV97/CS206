@@ -39,16 +39,11 @@ class SENSOR:
                 self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
             
                 
-
     def Save_Values(self):
-        #print("sensor Save_Values() started - self.linkName= ", self.linkName)
         numpy.save("../data/"+str(self.linkName)+"sensor.npy", self.values)
-        #print("sensor Save_Values() ended - self.values= ", self.values)
         
     def Save_Best_Values(self):
-        #print("sensor Save_Best_Values() started - self.linkName= ", self.linkName)
         numpy.save("../data_hexapod/"+str(self.linkName)+"sensor.npy", self.values)
-        #print("sensor Save_Best_Values() ended - self.values= ", self.values)
         
     def __del__(self):
         self.Save_Values()

@@ -9,9 +9,10 @@ from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
         os.system("rm brain*.nndf    2>nul ")
-        os.system("rm fitness*.nndf  2>nul ")
+        os.system("rm fitness*.txt   2>nul ")
         self.parents = {}
         self.nextAvailableID = 0
+        self.currentGeneration = 0
         self.Best_Fitness_array = []
 
         for entry_key in range(0,c.populationSize):
@@ -24,8 +25,8 @@ class PARALLEL_HILL_CLIMBER:
         for gen in range( c.numberOfGenerations):
             self.currentGeneration = gen
             self.Evolve_For_One_Generation()
-            self.Save_BestFitnessInGenToArray()
-        self.Write_BestFitnessArrayToFile()
+            self.Save_BestFitnessInGenToArray()     ### to add in quadruped project A
+        self.Write_BestFitnessArrayToFile()         ### to add in quadruped project A
           
     def Evolve_For_One_Generation(self):
         self.Spawn()
@@ -70,6 +71,7 @@ class PARALLEL_HILL_CLIMBER:
                 lowest_fitness          = self.parents[entry_key].fitness
             
         print("parallelHillClimber - Show_Best() key= ", entry_key_lowest_parent, " - Lowest fitness= ", lowest_fitness)
+#        self.parents[entry_key_lowest_parent].Start_Simulation("DIRECT", 0)
         self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
                 
     

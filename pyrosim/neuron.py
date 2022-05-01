@@ -6,6 +6,8 @@ import pyrosim.pyrosim as pyrosim
 
 import pyrosim.constants as c
 
+import numpy
+
 class NEURON: 
 
     def __init__(self,line):
@@ -55,8 +57,10 @@ class NEURON:
         self.Print_Value()
 
     def Set_Value(self,value):
-
-        self.value = value
+#        self.value = value
+#        print("neuron.py Set_Value() name= ", self.name, " - value= ", value)
+        clipped_value = numpy.clip(value,-1,1)
+        self.value = clipped_value
 
     def Update_Sensor_Neuron(self):
         self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
