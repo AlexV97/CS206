@@ -26,16 +26,17 @@ matplotlib.pyplot.plot(RightLowerLegsensorValues, label='RightLowerLegValues', l
 matplotlib.pyplot.legend()
 
 BackLowerLeg_touch = numpy.greater_equal(BackLowerLegsensorValues, ones)
-#print("analyze BackLowerLeg_touch= ",BackLowerLeg_touch )
 
 FrontLowerLeg_touch = numpy.greater_equal(FrontLowerLegsensorValues, ones)
-#print("analyze FrontLowerLeg_touch= ",FrontLowerLeg_touch )
 
 LeftLowerLeg_touch = numpy.greater_equal(LeftLowerLegsensorValues, ones)
-#print("analyze BackLowerLeg_touch= ",LeftLowerLeg_touch )
+i_LeftLowerLeg_touch = LeftLowerLeg_touch * 1
+count_LeftLowerLeg_touch = numpy.count_nonzero(LeftLowerLeg_touch)
+count_LeftLowernumberIterations = i_LeftLowerLeg_touch.size
+percentTimeLeftLowerLeg_touch = count_LeftLowerLeg_touch/count_LeftLowernumberIterations
+print("analyze LeftLowerLeg_touch=", count_LeftLowerLeg_touch, " / count_numberIterations=", count_LeftLowernumberIterations, " = percentTimeLeftLowerLeg_touch", percentTimeLeftLowerLeg_touch)
 
 RightLowerLeg_touch = numpy.greater_equal(RightLowerLegsensorValues, ones)
-#print("analyze BackLowerLeg_touch= ",RightLowerLeg_touch )
 
 xor_backLower_frontLower = numpy.logical_xor(BackLowerLeg_touch,FrontLowerLeg_touch)
 xor_leftLower_rightLower = numpy.logical_xor(LeftLowerLeg_touch,RightLowerLeg_touch)
@@ -43,14 +44,11 @@ xor_leftLower_rightLower = numpy.logical_xor(LeftLowerLeg_touch,RightLowerLeg_to
 xor_allLegs = numpy.logical_xor(xor_backLower_frontLower,xor_leftLower_rightLower)
 
 i_xor_allLegs = xor_allLegs * 1
-print("analyze i_xor_allLegs= ",i_xor_allLegs )
 count_onlyOneLegTouching = numpy.count_nonzero(i_xor_allLegs)
 count_numberIterations = i_xor_allLegs.size
 percentTimeOneLegTouch = count_onlyOneLegTouching/count_numberIterations
 
 print("analyze count_onlyOneLegTouching=", count_onlyOneLegTouching, " / count_numberIterations=", count_numberIterations, " = percentTimeOneLegTouch", percentTimeOneLegTouch)
-#matplotlib.pyplot.plot(i_xor_allLegs, label='OnlyOneLegIsTouching', linewidth=3)
-#matplotlib.pyplot.legend()
 
 matplotlib.pyplot.legend()
 matplotlib.pyplot.show()
