@@ -5,8 +5,11 @@ import time
 from solution import SOLUTION
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
+        print("parallelHillClimber __init__() started")
+#        os.system("ls -al *.nndf ")
         os.system("rm brain*.nndf    2>nul ")
-        os.system("rm fitness*.nndf  2>nul ")
+        os.system("rm fitness*.txt  2>nul ")
+        #os.system("rm tmp*.txt  2>nul ")
         self.parents = {}
         self.nextAvailableID = 0
         self.currentGeneration = 0
@@ -14,9 +17,8 @@ class PARALLEL_HILL_CLIMBER:
         for entry_key in range(0,c.populationSize):
             self.parents[entry_key] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
-    
+        
     def Evolve(self):
-        #print("parallelHillClimber - Evolve()")
         self.Evaluate(self.parents)
         for gen in range( c.numberOfGenerations):
             self.currentGeneration = gen
@@ -59,22 +61,20 @@ class PARALLEL_HILL_CLIMBER:
 
         lowest_fitness=999
         for entry_key in range(0,c.populationSize):
-            #print("parallelHillClimber - Show_Best() entry_key= ", entry_key, " - self.parents[entry_key].fitness= ", self.parents[entry_key].fitness)
             if ( self.parents[entry_key].fitness < lowest_fitness ):
                 entry_key_lowest_parent = entry_key
                 lowest_fitness          = self.parents[entry_key].fitness
-            
-        print("parallelHillClimber - Show_Best() key= ", entry_key_lowest_parent, " - Lowest fitness= ", lowest_fitness)
+         
+        print("parallelHillClimber - Show_Best() key= ", entry_key_lowest_parent, " - solutionId= ", self.parents[entry_key_lowest_parent].myID, " - Lowest fitness= ", lowest_fitness)
+
+        self.parents[entry_key_lowest_parent].Start_Simulation("DIRECT", 0)
         self.parents[entry_key_lowest_parent].Start_Simulation("GUI", 1)
-                
+
     
     def Evaluate(self, solutions):
-        #print("parallelHillClimber - Evaluate()")
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Start_Simulation("DIRECT", 0)
-        #print("parallelHillClimber - Evaluate() - All Simulation Started")
         for entry_key in range(0,c.populationSize):
             solutions[entry_key].Wait_For_Simulation_To_End("DIRECT")
-        #print("parallelHillClimber - Evaluate() - All Simulation Completed")
             
         

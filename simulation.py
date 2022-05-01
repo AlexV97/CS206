@@ -25,40 +25,20 @@ class SIMULATION:
         self.robot = ROBOT(self.solutionID)
         
     def Run(self):
-        print("simulation Run() Started")
-#        for i in range(c.indexRange):
-#           p.stepSimulation()
-#           self.robot.Sense(i)
-#           self.robot.Think()
-#           self.robot.Act(i)
-#           if ( self.directOrGUI == "GUI"):
-#                #time.sleep(1/(2*c.marchingFreq)); #time.sleep(1/480); #
-#                time.sleep(1/(c.marchingFreq)); #time.sleep(1/480); #
-        if ( self.directOrGUI != "GUI"):  ### DIRECT
-            for i in range(c.indexRange):
-                p.stepSimulation()
-                self.robot.Sense(i)
-                self.robot.Think()
-                self.robot.Act(i)
-            print("simulation Run() Save_Values_Sensors()")
-            self.robot.Save_Values_Sensors() # saving sensors in ../data for normal DIRECT operation
-
-        else:  ### GUI
-            print("simulation Run() GUI")
-            for i in range(c.indexRange_GUI):
-                p.stepSimulation()
-                self.robot.Sense(i)
-                self.robot.Think()
-                self.robot.Act(i)
-                #time.sleep(1/(480)); #time.sleep(1/(120)); #time.sleep(1/480); #time.sleep(1/(c.marchingFreq)); #time.sleep(1/(c.marchingFreq)); #
-            print("simulation Run() Save_Best_Values_Sensors()")
+        #print("simulation Run() Started - solutionID:", self.solutionID)
+        for i in range(c.indexRange):
+           p.stepSimulation()
+           self.robot.Sense(i)
+           self.robot.Think()
+           self.robot.Act(i)
+           
+        self.robot.Save_Values_Sensors() # saving sensors in ../data for normal DIRECT operation
+        if ( self.directOrGUI == "GUI"):
             self.robot.Save_Best_Values_Sensors() # saving best sensors results in ../data_quadruped for final GUI operation
         
         
     def Get_Fitness(self):
-        print("simulation Get_Fitness() Starts - self.directOrGUI = ", self.directOrGUI , " - = self.solutionID", self.solutionID)
         self.robot.Get_Fitness()
-        print("simulation Get_Fitness() Done")
             
     def __del__(self):
         p.disconnect()

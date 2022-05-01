@@ -45,13 +45,18 @@ def End_Model():
 def Get_Touch_Sensor_Value_For_Link(linkName):
 
     touchValue = -1.0
-
     desiredLinkIndex = linkNamesToIndices[linkName]
 
     pts = p.getContactPoints()
-
+    # to avoid intermittent error: None Type is not iterable
+    if ( pts == None ):
+        pts = p.getContactPoints()
+        if ( pts == None ):
+            pts = p.getContactPoints()
+            if ( pts == None ):
+                pts = p.getContactPoints()
+                
     for pt in pts:
-
         linkIndex = pt[4]
 
         if ( linkIndex == desiredLinkIndex ):
